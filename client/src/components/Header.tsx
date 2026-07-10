@@ -1,51 +1,130 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const gsap = (window as any).gsap;
+    if (!gsap || !headerRef.current) return;
+
+    const navLinks = headerRef.current.querySelectorAll("nav a");
+    navLinks.forEach((link: any) => {
+      const underline = link.querySelector(".underline");
+      link.addEventListener("mouseenter", () => {
+        gsap.to(underline, { width: "100%", duration: 0.4, ease: "power2.out" });
+      });
+      link.addEventListener("mouseleave", () => {
+        gsap.to(underline, { width: "0%", duration: 0.4, ease: "power2.out" });
+      });
+    });
+  }, []);
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-[#e8ddd5]">
-      <div className="container flex items-center justify-between h-16 sm:h-20">
-        <div className="flex flex-col">
-          <div className="text-sm font-bold text-[#c4184c] tracking-widest">POSHSAAZ</div>
-          <div className="text-xs text-[#7a7470]">Kashmir Craft</div>
+    <header
+      ref={headerRef}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-xl shadow-lg border-b border-[#e8a0b8]/20"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container flex items-center justify-between h-20 md:h-24">
+        {/* Logo */}
+        <div className="flex items-center gap-1">
+          <div className="text-2xl md:text-3xl font-bold text-[#c4184c] tracking-wider">
+            POSHSAAZ
+          </div>
+          <div className="text-xs md:text-sm text-[#7a7470] font-light ml-2">
+            Kashmir Craft
+          </div>
         </div>
-        
+
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-12">
-          <a href="#work" className="text-sm font-medium text-[#2a2420] hover:text-[#c4184c] transition-colors duration-300 relative group">
+          <a href="#work" className="relative text-[#2a2420] font-medium text-lg group">
             Collections
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#c4184c] group-hover:w-full transition-all duration-300" />
+            <span className="underline absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-[#c4184c] to-[#e8a0b8]" />
           </a>
-          <a href="#about" className="text-sm font-medium text-[#2a2420] hover:text-[#c4184c] transition-colors duration-300 relative group">
+          <a href="#" className="relative text-[#2a2420] font-medium text-lg group">
             About
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#c4184c] group-hover:w-full transition-all duration-300" />
+            <span className="underline absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-[#c4184c] to-[#e8a0b8]" />
           </a>
-          <a href="#contact" className="text-sm font-medium text-[#2a2420] hover:text-[#c4184c] transition-colors duration-300 relative group">
+          <a href="#contact" className="relative text-[#2a2420] font-medium text-lg group">
             Contact
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#c4184c] group-hover:w-full transition-all duration-300" />
+            <span className="underline absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-[#c4184c] to-[#e8a0b8]" />
           </a>
         </nav>
 
-        <button className="hidden md:block btn-primary text-sm">
-          Inquire
-        </button>
+        {/* CTA Button */}
+        <div className="hidden md:block">
+          <button className="px-8 py-3 bg-[#c4184c] text-white font-semibold rounded-none transition-all duration-300 hover:bg-[#a01a3a] active:scale-95 hover:shadow-xl text-base">
+            Inquire
+          </button>
+        </div>
 
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-[#2a2420] hover:text-[#c4184c] transition-colors"
+          className="md:hidden flex flex-col gap-1.5 w-8 h-8 items-center justify-center"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          <span
+            className={`w-6 h-0.5 bg-[#2a2420] transition-all duration-300 ${
+              isOpen ? "rotate-45 translate-y-2" : ""
+            }`}
+          />
+          <span
+            className={`w-6 h-0.5 bg-[#2a2420] transition-all duration-300 ${
+              isOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`w-6 h-0.5 bg-[#2a2420] transition-all duration-300 ${
+              isOpen ? "-rotate-45 -translate-y-2" : ""
+            }`}
+          />
         </button>
       </div>
 
+      {/* Mobile Menu */}
       {isOpen && (
-        <nav className="md:hidden bg-white border-b border-[#e8ddd5] py-4 px-4 space-y-3">
-          <a href="#work" className="block text-sm font-medium text-[#2a2420] hover:text-[#c4184c] py-2">Collections</a>
-          <a href="#about" className="block text-sm font-medium text-[#2a2420] hover:text-[#c4184c] py-2">About</a>
-          <a href="#contact" className="block text-sm font-medium text-[#2a2420] hover:text-[#c4184c] py-2">Contact</a>
-          <button className="w-full btn-primary text-sm">Inquire</button>
-        </nav>
+        <div className="md:hidden bg-white border-t border-[#e8a0b8]/20 shadow-lg">
+          <nav className="flex flex-col gap-6 p-6">
+            <a
+              href="#work"
+              className="text-[#2a2420] font-medium text-lg hover:text-[#c4184c] transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Collections
+            </a>
+            <a
+              href="#"
+              className="text-[#2a2420] font-medium text-lg hover:text-[#c4184c] transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              About
+            </a>
+            <a
+              href="#contact"
+              className="text-[#2a2420] font-medium text-lg hover:text-[#c4184c] transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact
+            </a>
+            <button className="w-full px-6 py-3 bg-[#c4184c] text-white font-semibold rounded-none transition-all duration-300 hover:bg-[#a01a3a] active:scale-95 text-base">
+              Inquire
+            </button>
+          </nav>
+        </div>
       )}
     </header>
   );
