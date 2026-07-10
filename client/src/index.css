@@ -43,39 +43,39 @@
 }
 
 :root {
-  --primary: #ffffff;
-  --primary-foreground: #000000;
-  --sidebar-primary: #ffffff;
-  --sidebar-primary-foreground: #000000;
-  --chart-1: #ffffff;
-  --chart-2: #f0f0f0;
-  --chart-3: #e0e0e0;
-  --chart-4: #d0d0d0;
-  --chart-5: #c0c0c0;
+  --primary: #d946a6;
+  --primary-foreground: #ffffff;
+  --sidebar-primary: #d946a6;
+  --sidebar-primary-foreground: #ffffff;
+  --chart-1: #d946a6;
+  --chart-2: #a78bfa;
+  --chart-3: #c084fc;
+  --chart-4: #e879f9;
+  --chart-5: #f0abfc;
   --radius: 0.65rem;
-  --background: #000000;
-  --foreground: #ffffff;
-  --card: #1a1a1a;
-  --card-foreground: #ffffff;
-  --popover: #1a1a1a;
-  --popover-foreground: #ffffff;
-  --secondary: #1a1a1a;
-  --secondary-foreground: #ffffff;
-  --muted: #2a2a2a;
-  --muted-foreground: #999999;
-  --accent: #ffffff;
-  --accent-foreground: #000000;
-  --destructive: #ff4444;
+  --background: #fafaf8;
+  --foreground: #1a1a18;
+  --card: #ffffff;
+  --card-foreground: #1a1a18;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a18;
+  --secondary: #f3f0ff;
+  --secondary-foreground: #4a1a6f;
+  --muted: #f0ebe5;
+  --muted-foreground: #6b6b66;
+  --accent: #d946a6;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: #2a2a2a;
-  --input: #2a2a2a;
-  --ring: #ffffff;
-  --sidebar: #000000;
-  --sidebar-foreground: #ffffff;
-  --sidebar-accent: #1a1a1a;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #2a2a2a;
-  --sidebar-ring: #ffffff;
+  --border: #e8e4dd;
+  --input: #e8e4dd;
+  --ring: #d946a6;
+  --sidebar: #fafaf8;
+  --sidebar-foreground: #1a1a18;
+  --sidebar-accent: #f3f0ff;
+  --sidebar-accent-foreground: #4a1a6f;
+  --sidebar-border: #e8e4dd;
+  --sidebar-ring: #d946a6;
 }
 
 @layer base {
@@ -84,7 +84,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    scroll-behavior: smooth;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -128,8 +127,8 @@
     }
   }
 
-  /* Smooth scroll animations */
-  @keyframes fade-in-up {
+  /* Animations */
+  @keyframes fadeInUp {
     from {
       opacity: 0;
       transform: translateY(30px);
@@ -140,7 +139,29 @@
     }
   }
 
-  .fade-in-up {
-    animation: fade-in-up 0.8s ease-out forwards;
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
   }
 }

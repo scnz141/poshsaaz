@@ -28,23 +28,23 @@ export default function CTASection() {
   }, []);
 
   return (
-    <section id="contact" className="py-20 sm:py-28 md:py-40 lg:py-48 bg-black border-t border-white/10 flex items-center justify-center min-h-screen">
+    <section id="contact" className="py-20 sm:py-28 md:py-40 lg:py-48 bg-white border-t border-gray-200 flex items-center justify-center min-h-screen">
       <div ref={contentRef} className="container text-center max-w-3xl px-4">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 sm:mb-12 text-white">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 sm:mb-12 text-gray-900">
           Let's Create
         </h2>
 
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
           <a
             href="mailto:info@poshsaaz.com"
-            className="group px-6 sm:px-10 py-3 sm:py-4 bg-white text-black rounded-full font-bold text-base sm:text-lg hover:bg-white/90 transition-all duration-300 hover:shadow-2xl inline-flex items-center justify-center gap-2 w-full sm:w-auto"
+            className="group px-6 sm:px-10 py-3 sm:py-4 bg-pink-600 text-white rounded-full font-bold text-base sm:text-lg hover:bg-pink-700 transition-all duration-300 hover:shadow-lg inline-flex items-center justify-center gap-2 w-full sm:w-auto"
           >
             <span>Contact</span>
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </a>
           <a
             href="#"
-            className="group px-6 sm:px-10 py-3 sm:py-4 border-2 border-white text-white rounded-full font-bold text-base sm:text-lg hover:bg-white/10 transition-all duration-300 inline-flex items-center justify-center gap-2 w-full sm:w-auto"
+            className="group px-6 sm:px-10 py-3 sm:py-4 border-2 border-gray-900 text-gray-900 rounded-full font-bold text-base sm:text-lg hover:bg-gray-100 transition-all duration-300 inline-flex items-center justify-center gap-2 w-full sm:w-auto"
           >
             <span>Explore</span>
             <span className="group-hover:translate-x-1 transition-transform">→</span>

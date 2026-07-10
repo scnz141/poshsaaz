@@ -31,13 +31,13 @@ export default function AnimatedGallery() {
   }, []);
 
   const images = [
-    "/manus-storage/collection_hairbands_7e0642b7.png",
-    "/manus-storage/collection_bouquets_3fe26720.png",
-    "/manus-storage/collection_details_35fca3ca.png",
+    "/manus-storage/collection_hairbands_light_0ba7db5e.png",
+    "/manus-storage/collection_bouquets_light_f1e34783.png",
+    "/manus-storage/collection_details_light_8285b138.png",
   ];
 
   return (
-    <section className="py-16 sm:py-24 md:py-32 lg:py-40 bg-black border-t border-white/10">
+    <section className="py-16 sm:py-24 md:py-32 lg:py-40 bg-gray-50 border-t border-gray-200">
       <div className="container">
         <div className="space-y-12 sm:space-y-16 md:space-y-24">
           {images.map((image, index) => (
@@ -48,7 +48,7 @@ export default function AnimatedGallery() {
               }}
               className={`flex flex-col ${index % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"} gap-6 sm:gap-8 md:gap-12 items-center`}
             >
-              <div className="w-full md:w-1/2 h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden">
+              <div className="w-full md:w-1/2 h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
                 <img
                   src={image}
                   alt={`Gallery ${index + 1}`}
@@ -56,7 +56,7 @@ export default function AnimatedGallery() {
                 />
               </div>
               <div className="w-full md:w-1/2 text-center md:text-left">
-                <div className="h-2 w-12 bg-white/30 mx-auto md:mx-0 mb-4" />
+                <div className="h-2 w-12 bg-pink-300 mx-auto md:mx-0 mb-4" />
               </div>
             </div>
           ))}
