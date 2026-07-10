@@ -1,25 +1,38 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+ import { useEffect, useRef } from "react";
+ import { Button } from "@/components/ui/button";
+ import HeroSection from "@/components/sections/HeroSection";
+ import AboutSection from "@/components/sections/AboutSection";
+ import ProductShowcase from "@/components/sections/ProductShowcase";
+ import CraftsmanshipSection from "@/components/sections/CraftsmanshipSection";
+ import TestimonialSection from "@/components/sections/TestimonialSection";
+ import CTASection from "@/components/sections/CTASection";
+ import Footer from "@/components/sections/Footer";
+ import Header from "@/components/Header";
 
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
- */
-export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+ export default function Home() {
+   const containerRef = useRef<HTMLDivElement>(null);
 
-  return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
-    </div>
-  );
-}
+   useEffect(() => {
+     // Register ScrollTrigger
+     const gsap = (window as any).gsap;
+     const ScrollTrigger = (window as any).ScrollTrigger;
+     if (gsap && ScrollTrigger) {
+       gsap.registerPlugin(ScrollTrigger);
+     }
+   }, []);
+
+   return (
+     <div ref={containerRef} className="min-h-screen bg-brand-cream">
+       <Header />
+       <main>
+         <HeroSection />
+         <AboutSection />
+         <ProductShowcase />
+         <CraftsmanshipSection />
+         <TestimonialSection />
+         <CTASection />
+       </main>
+       <Footer />
+     </div>
+   );
+ }
