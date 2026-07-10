@@ -59,17 +59,20 @@ export default function HeroSection() {
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900 mb-4 sm:mb-6 drop-shadow-lg leading-tight">
           Bloom
         </h1>
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-800 mb-8 sm:mb-12 drop-shadow-md max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-800 mb-3 sm:mb-4 drop-shadow-md">
           Handcrafted elegance
+        </p>
+        <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-8 sm:mb-12 drop-shadow-md max-w-2xl mx-auto">
+          Discover our collection of handmade floral accessories from Kashmir
         </p>
 
         {/* CTA Buttons */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-          <button className="px-6 sm:px-8 py-2.5 sm:py-3 bg-pink-600 text-white rounded-full font-bold text-sm sm:text-base hover:bg-pink-700 transition-all duration-300 hover:shadow-lg active:scale-95 w-full sm:w-auto">
-            Explore
+          <button className="px-6 sm:px-8 py-2.5 sm:py-3 bg-pink-600 text-white rounded-full font-bold text-sm sm:text-base hover:bg-pink-700 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 w-full sm:w-auto">
+            Explore Collections
           </button>
-          <button className="px-6 sm:px-8 py-2.5 sm:py-3 border-2 border-gray-900 text-gray-900 rounded-full font-bold text-sm sm:text-base hover:bg-gray-100 transition-all duration-300 active:scale-95 w-full sm:w-auto">
-            Learn
+          <button className="px-6 sm:px-8 py-2.5 sm:py-3 border-2 border-gray-900 text-gray-900 rounded-full font-bold text-sm sm:text-base hover:bg-gray-100 transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto">
+            Learn More
           </button>
         </div>
       </div>
