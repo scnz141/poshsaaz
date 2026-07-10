@@ -27,34 +27,55 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 :root {
-  --primary: #c4184c;
-  --primary-foreground: #ffffff;
-  --chart-1: #c4184c;
-  --chart-2: #e8a0b8;
-  --chart-3: #d4547e;
-  --chart-4: #a01a3a;
-  --chart-5: #8b1538;
-  --radius: 0.5rem;
-  --background: #fefdfb;
-  --foreground: #2a2420;
-  --card: #ffffff;
-  --card-foreground: #2a2420;
-  --popover: #ffffff;
-  --popover-foreground: #2a2420;
-  --secondary: #f5e6eb;
-  --secondary-foreground: #6b2a47;
-  --muted: #ede5df;
-  --muted-foreground: #7a7470;
-  --accent: #c4184c;
-  --accent-foreground: #ffffff;
-  --destructive: #dc2626;
-  --destructive-foreground: #ffffff;
-  --border: #e8ddd5;
-  --input: #e8ddd5;
-  --ring: #c4184c;
+  --primary: var(--color-blue-700);
+  --primary-foreground: var(--color-blue-50);
+  --sidebar-primary: var(--color-blue-600);
+  --sidebar-primary-foreground: var(--color-blue-50);
+  --chart-1: var(--color-blue-300);
+  --chart-2: var(--color-blue-500);
+  --chart-3: var(--color-blue-600);
+  --chart-4: var(--color-blue-700);
+  --chart-5: var(--color-blue-800);
+  --radius: 0.65rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.235 0.015 65);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.235 0.015 65);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.235 0.015 65);
+  --secondary: oklch(0.98 0.001 286.375);
+  --secondary-foreground: oklch(0.4 0.015 65);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.141 0.005 285.823);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.623 0.214 259.815);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.235 0.015 65);
+  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
+  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-ring: oklch(0.623 0.214 259.815);
 }
 
 @layer base {
@@ -63,7 +84,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -75,11 +95,6 @@
   input[type="checkbox"]:not(:disabled),
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    letter-spacing: -0.02em;
   }
 }
 
@@ -106,112 +121,134 @@
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 3rem;
-      padding-right: 3rem;
-      max-width: 1400px;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
     }
   }
 
-  /* Custom Animations */
-  @keyframes slideInUp {
-    from {
-      opacity: 0;
-      transform: translateY(60px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Motion Design Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
   }
 
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-80px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
   }
 
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(80px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); }
+    50% { box-shadow: 0 0 40px rgba(0, 0, 0, 0.2); }
   }
 
-  @keyframes fadeInScale {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
   }
 
-  @keyframes textReveal {
-    from {
-      opacity: 0;
-      clip-path: inset(0 100% 0 0);
-    }
-    to {
-      opacity: 1;
-      clip-path: inset(0 0 0 0);
-    }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-down {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes rotate-in {
+    from { opacity: 0; transform: rotate(-10deg) scale(0.95); }
+    to { opacity: 1; transform: rotate(0) scale(1); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 4s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 1000px 100%;
   }
 
   .animate-slide-up {
-    animation: slideInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: slide-up 0.6s ease-out;
   }
 
-  .animate-slide-left {
-    animation: slideInLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  .animate-slide-down {
+    animation: slide-down 0.6s ease-out;
   }
 
-  .animate-slide-right {
-    animation: slideInRight 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out;
   }
 
-  .animate-fade-scale {
-    animation: fadeInScale 0.7s ease-out;
+  .animate-scale-in {
+    animation: scale-in 0.6s ease-out;
   }
 
-  .animate-text-reveal {
-    animation: textReveal 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  .animate-rotate-in {
+    animation: rotate-in 0.6s ease-out;
   }
 
-  /* Custom Button Styles */
-  .btn-primary {
-    @apply px-8 py-3 bg-[#c4184c] text-white font-semibold rounded-sm transition-all duration-300 hover:bg-[#a01a3a] active:scale-95 hover:shadow-lg;
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
   }
 
-  .btn-secondary {
-    @apply px-8 py-3 border-2 border-[#2a2420] text-[#2a2420] font-semibold rounded-sm transition-all duration-300 hover:bg-[#2a2420] hover:text-white active:scale-95;
+  /* Button animations */
+  button {
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  /* Custom Divider */
-  .divider-custom {
-    @apply h-px bg-gradient-to-r from-transparent via-[#c4184c] to-transparent;
+  button:active {
+    transform: scale(0.97);
   }
 
-  /* Image Container */
-  .img-container {
-    @apply relative overflow-hidden;
+  /* Image hover effects */
+  img {
+    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .img-container img {
-    @apply w-full h-full object-cover transition-transform duration-1000;
+  /* Text animations */
+  h1, h2, h3, h4, h5, h6 {
+    transition: color 0.3s ease;
   }
 
-  .img-container:hover img {
-    @apply scale-110;
+  /* Parallax effect support */
+  .parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
