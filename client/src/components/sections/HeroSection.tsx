@@ -10,44 +10,36 @@ export default function HeroSection() {
 
     gsap.fromTo(
       imageRef.current,
-      { opacity: 0, scale: 1.2, rotateY: 15 },
-      { opacity: 1, scale: 1, rotateY: 0, duration: 2.5, ease: "power2.inOut" }
+      { opacity: 0, scale: 0.98 },
+      { opacity: 1, scale: 1, duration: 1.5, ease: "power2.inOut" }
     );
 
     gsap.fromTo(
       textRef.current?.querySelectorAll("h1, p, button"),
-      { opacity: 0, x: -60 },
-      { opacity: 1, x: 0, duration: 1.2, stagger: 0.2, ease: "cubic-bezier(0.34, 1.56, 0.64, 1)", delay: 0.3 }
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: "power2.out", delay: 0.2 }
     );
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center pt-32 pb-24 md:pb-40 overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#00d9ff]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#ff006e]/10 rounded-full blur-3xl" />
-      </div>
-      
-      <div className="container grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+    <section className="relative w-full min-h-screen flex items-center justify-center pt-32 pb-20 md:pb-32 overflow-hidden bg-white">
+      <div className="container grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 items-center">
         {/* Text Content */}
         <div ref={textRef} className="order-2 md:order-1 space-y-8">
           <div>
-            <div className="inline-block px-4 py-2 bg-[#00d9ff]/20 border border-[#00d9ff]/50 rounded-full mb-8">
-              <span className="text-[#00d9ff] text-xs font-bold uppercase tracking-widest">Handcrafted Elegance</span>
-            </div>
-            <h1 className="text-7xl sm:text-8xl md:text-9xl font-black text-white mb-6 leading-tight tracking-tighter">
-              Bloom <br /> <span className="bg-gradient-to-r from-[#00d9ff] to-[#ff006e] bg-clip-text text-transparent">Eternal</span>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-light text-gray-900 mb-6 leading-tight tracking-tight">
+              Bloom with <span className="font-semibold">Elegance</span>
             </h1>
-            <p className="text-xl sm:text-2xl text-gray-300 mb-4 max-w-lg leading-relaxed font-light">
-              Timeless floral creations from Kashmir's heart, where tradition meets contemporary artistry.
+            <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed font-light">
+              Handcrafted floral accessories from Kashmir. Each piece is a testament to artistry, tradition, and timeless beauty.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 pt-8">
-            <button className="px-10 py-4 bg-gradient-to-r from-[#00d9ff] to-[#ff006e] text-black font-bold rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-[#00d9ff]/50 active:scale-95 text-lg uppercase tracking-wide">
-              Explore Now
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <button className="px-8 py-3 bg-gray-900 text-white font-medium rounded-full transition-all duration-300 hover:bg-gray-800 active:scale-95 text-sm">
+              Explore Collections
             </button>
-            <button className="px-10 py-4 border-2 border-[#00d9ff] text-[#00d9ff] font-bold rounded-full transition-all duration-300 hover:bg-[#00d9ff]/10 active:scale-95 text-lg uppercase tracking-wide">
+            <button className="px-8 py-3 border border-gray-900 text-gray-900 font-medium rounded-full transition-all duration-300 hover:bg-gray-50 active:scale-95 text-sm">
               Learn More
             </button>
           </div>
@@ -55,13 +47,12 @@ export default function HeroSection() {
 
         {/* Image */}
         <div className="order-1 md:order-2">
-          <div className="relative h-96 sm:h-[550px] md:h-[650px] rounded-3xl overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#00d9ff]/20 to-[#ff006e]/20 z-10" />
+          <div className="relative h-96 sm:h-[500px] md:h-[600px] rounded-2xl overflow-hidden bg-gray-100">
             <img
               ref={imageRef}
               src="/manus-storage/hero_light_premium_dcd49e32.png"
               alt="Poshsaaz Collections"
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1500"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
             />
           </div>
         </div>
