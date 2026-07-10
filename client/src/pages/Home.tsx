@@ -5,7 +5,6 @@ import PortfolioGrid from "@/components/sections/PortfolioGrid";
 import AnimatedGallery from "@/components/sections/AnimatedGallery";
 import CTASection from "@/components/sections/CTASection";
 import Footer from "@/components/sections/Footer";
-import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import ProductModal from "@/components/ProductModal";
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
       <Header onProductClick={(id) => setSelectedProduct(id)} />
       <HeroSection />
       <PortfolioGrid onProductClick={(id) => setSelectedProduct(id)} />
-      <TestimonialsCarousel />
       <AnimatedGallery />
       <CTASection />
       <Footer />

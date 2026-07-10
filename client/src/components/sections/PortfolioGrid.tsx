@@ -55,7 +55,7 @@ export default function PortfolioGrid({ onProductClick }: PortfolioGridProps) {
               className="portfolio-card group cursor-pointer"
               onClick={() => onProductClick?.(item.id)}
             >
-              <div className="relative h-64 sm:h-80 md:h-96 lg:h-[450px] rounded-xl overflow-hidden mb-4 md:mb-6 bg-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500">
+              <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[450px] rounded-2xl overflow-hidden mb-4 md:mb-6 bg-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -66,6 +66,9 @@ export default function PortfolioGrid({ onProductClick }: PortfolioGridProps) {
               <h3 className="text-xl sm:text-2xl md:text-3xl font-light text-gray-900 group-hover:text-gray-600 transition-colors duration-300">
                 {item.title}
               </h3>
+              <p className="text-sm md:text-base text-gray-600 font-light mt-2">
+                {item.description}
+              </p>
             </div>
           ))}
         </div>
