@@ -499,29 +499,30 @@ export default function Home() {
       </section>
 
       {/* Contact / CTA */}
-      <section id="contact" className="py-28 md:py-44 px-6 md:px-10 bg-[#f5f0eb]">
+      <section id="contact" className="py-28 md:py-44 px-6 md:px-10 bg-[#faf8f5] border-t border-[#e8e0d8]">
         <div className="max-w-[1400px] mx-auto">
           <RevealSection>
-            <div className="max-w-2xl">
-              <p className="text-[11px] tracking-[0.25em] uppercase text-[#8b6f6f] mb-4">Custom Orders</p>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
+              <div className="md:col-span-6">
+              <p className="text-[11px] tracking-[0.25em] uppercase text-[#8b6f6f] mb-5">Custom Orders</p>
               <h2
-                className="text-[clamp(2rem,5vw,4rem)] leading-[1.1] mb-8"
+                className="text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] mb-8"
                 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#2d1a2d" }}
               >
                 Let us create something
                 <br />
                 <em>just for you</em>
               </h2>
-              <p className="text-[15px] leading-[1.8] text-[#6b5a5a] mb-10 max-w-lg">
+              <p className="text-[15px] leading-[1.8] text-[#6b5a5a] mb-10">
                 Every piece can be tailored — choose your colors, your flowers,
                 your occasion. We'd love to hear your vision.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
                 <a
                   href="https://wa.me/917006862517?text=Hi!%20I'd%20like%20to%20place%20a%20custom%20order."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white text-[12px] tracking-[0.15em] uppercase hover:bg-[#1da851] transition-colors duration-500 group"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#4a2040] text-[#faf8f5] text-[12px] tracking-[0.15em] uppercase hover:bg-[#3a1530] transition-colors duration-500 group"
                 >
                   <MessageCircle size={16} />
                   WhatsApp Us
@@ -529,11 +530,21 @@ export default function Home() {
                 </a>
                 <a
                   href="mailto:hashimdar141@gmail.com"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#4a2040] text-[#faf8f5] text-[12px] tracking-[0.15em] uppercase hover:bg-[#3a1530] transition-colors duration-500 group"
+                  className="inline-flex items-center gap-3 px-8 py-4 border border-[#4a2040] text-[#4a2040] text-[12px] tracking-[0.15em] uppercase hover:bg-[#4a2040] hover:text-[#faf8f5] transition-all duration-500 group"
                 >
                   Email Us
                   <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                 </a>
+              </div>
+              </div>
+              <div className="md:col-span-5 md:col-start-8 hidden md:block">
+                <div className="aspect-[4/5] overflow-hidden">
+                  <img
+                    src={IMAGES.packaging}
+                    alt="Custom gift packaging"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           </RevealSection>
