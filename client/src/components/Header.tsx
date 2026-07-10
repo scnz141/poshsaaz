@@ -1,9 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+interface HeaderProps {
+  onProductClick?: (id: number) => void;
+}
+
+export default function Header({ onProductClick }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const headerRef = useRef<HTMLElement>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [, navigate] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,78 +20,114 @@ export default function Header() {
 
   return (
     <header
-      ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-sm border-b border-gray-100"
-          : "bg-transparent"
+          ? "bg-white/80 backdrop-blur-md shadow-sm"
+          : "bg-white"
       }`}
     >
-      <div className="container flex items-center justify-between h-20">
+      <div className="container px-4 md:px-0 py-4 md:py-5 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="text-2xl font-light text-gray-900 tracking-tight">
-            POSHSAAZ
-          </div>
-        </div>
+        <button
+          onClick={() => navigate("/")}
+          className="text-lg md:text-xl font-light text-gray-900 hover:text-gray-600 transition-colors"
+        >
+          POSHSAAZ
+        </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-12">
-          <a href="#work" className="text-sm text-gray-700 font-medium hover:text-gray-900 transition-colors">
+        <nav className="hidden md:flex items-center gap-8 lg:gap-12">
+          <a
+            href="#collections"
+            className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors"
+          >
             Collections
           </a>
-          <a href="#" className="text-sm text-gray-700 font-medium hover:text-gray-900 transition-colors">
+          <button
+            onClick={() => navigate("/products")}
+            className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            Products
+          </button>
+          <a
+            href="#about"
+            className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors"
+          >
             About
           </a>
-          <a href="#contact" className="text-sm text-gray-700 font-medium hover:text-gray-900 transition-colors">
+          <a
+            href="#contact"
+            className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors"
+          >
             Contact
           </a>
         </nav>
 
         {/* CTA Button */}
-        <div className="hidden md:block">
-          <button className="px-8 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-full transition-all duration-300 hover:bg-gray-800 active:scale-95">
-            Inquire
-          </button>
-        </div>
+        <button className="hidden md:block px-6 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all duration-300 active:scale-95">
+          Inquire
+        </button>
 
         {/* Mobile Menu Button */}
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden flex flex-col gap-1.5 w-6 h-6 items-center justify-center"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
         >
-          <span
-            className={`w-5 h-0.5 bg-gray-900 transition-all duration-300 ${
-              isOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          />
-          <span
-            className={`w-5 h-0.5 bg-gray-900 transition-all duration-300 ${
-              isOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`w-5 h-0.5 bg-gray-900 transition-all duration-300 ${
-              isOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          />
+          <svg
+            className="w-6 h-6 text-gray-900"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={
+                isMobileMenuOpen
+                  ? "M6 18L18 6M6 6l12 12"
+                  : "M4 6h16M4 12h16M4 18h16"
+              }
+            />
+          </svg>
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100">
-          <nav className="flex flex-col gap-4 p-6">
-            <a href="#work" className="text-sm text-gray-700 font-medium hover:text-gray-900">
+      {isMobileMenuOpen && (
+        <div className="md:hidden border-t border-gray-200 bg-white">
+          <nav className="container px-4 py-4 flex flex-col gap-4">
+            <a
+              href="#collections"
+              className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               Collections
             </a>
-            <a href="#" className="text-sm text-gray-700 font-medium hover:text-gray-900">
+            <button
+              onClick={() => {
+                navigate("/products");
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors py-2 text-left"
+            >
+              Products
+            </button>
+            <a
+              href="#about"
+              className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               About
             </a>
-            <a href="#contact" className="text-sm text-gray-700 font-medium hover:text-gray-900">
+            <a
+              href="#contact"
+              className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               Contact
             </a>
-            <button className="w-full px-6 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-full">
+            <button className="w-full px-6 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all duration-300 mt-2">
               Inquire
             </button>
           </nav>

@@ -1,13 +1,11 @@
 import { useEffect, useRef } from "react";
+import { products } from "@/lib/products";
 
-const collections = [
-  { id: 1, title: "Floral Hairbands", image: "/manus-storage/collection_hairbands_light_7c8b2f1e.png" },
-  { id: 2, title: "Artisan Bouquets", image: "/manus-storage/collection_bouquets_light_a3d5f9e2.png" },
-  { id: 3, title: "Intricate Details", image: "/manus-storage/collection_details_light_b1c9e7f3.png" },
-  { id: 4, title: "Premium Packaging", image: "/manus-storage/collection_packaging_light_f2e4d8c1.png" },
-];
+interface PortfolioGridProps {
+  onProductClick?: (id: number) => void;
+}
 
-export default function PortfolioGrid() {
+export default function PortfolioGrid({ onProductClick }: PortfolioGridProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -51,8 +49,12 @@ export default function PortfolioGrid() {
         </div>
 
         <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 px-4 md:px-0">
-          {collections.map((item) => (
-            <div key={item.id} className="portfolio-card group cursor-pointer">
+          {products.map((item) => (
+            <div
+              key={item.id}
+              className="portfolio-card group cursor-pointer"
+              onClick={() => onProductClick?.(item.id)}
+            >
               <div className="relative h-64 sm:h-80 md:h-96 lg:h-[450px] rounded-xl overflow-hidden mb-4 md:mb-6 bg-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500">
                 <img
                   src={item.image}

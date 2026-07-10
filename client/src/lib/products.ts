@@ -1,0 +1,76 @@
+export const products = [
+  {
+    id: 1,
+    title: "Floral Hairbands",
+    category: "Hairbands",
+    image: "/manus-storage/collection_hairbands_light_7c8b2f1e.png",
+    description: "Handcrafted floral hairbands with premium materials and intricate detailing.",
+    details: "Each hairband is meticulously crafted with fresh flowers and premium materials. Perfect for weddings, events, or everyday elegance.",
+    price: "Custom",
+  },
+  {
+    id: 2,
+    title: "Artisan Bouquets",
+    category: "Bouquets",
+    image: "/manus-storage/collection_bouquets_light_a3d5f9e2.png",
+    description: "Stunning handmade bouquets featuring premium floral arrangements.",
+    details: "Our signature bouquets combine traditional Kashmir craftsmanship with contemporary design. Each arrangement is unique and made to order.",
+    price: "Custom",
+  },
+  {
+    id: 3,
+    title: "Intricate Details",
+    category: "Details",
+    image: "/manus-storage/collection_details_light_b1c9e7f3.png",
+    description: "Fine floral details and embellishments for special occasions.",
+    details: "Precision-crafted floral elements designed for bridal wear, accessories, and decorative purposes. Made with premium materials.",
+    price: "Custom",
+  },
+  {
+    id: 4,
+    title: "Premium Packaging",
+    category: "Packaging",
+    image: "/manus-storage/collection_packaging_light_f2e4d8c1.png",
+    description: "Elegant packaging solutions for your special creations.",
+    details: "Custom packaging options available for all products. Each package is designed to preserve and present your purchase beautifully.",
+    price: "Custom",
+  },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: "Amira Khan",
+    role: "Bride",
+    rating: 5,
+    text: "The most beautiful hairband I've ever seen. The craftsmanship is impeccable and it made my wedding day extra special.",
+  },
+  {
+    id: 2,
+    name: "Fatima Ahmed",
+    role: "Event Planner",
+    rating: 5,
+    text: "Poshsaaz creates magic with every piece. My clients are always amazed by the quality and attention to detail.",
+  },
+  {
+    id: 3,
+    name: "Zara Malik",
+    role: "Fashion Designer",
+    rating: 5,
+    text: "The artistry and tradition in every creation is remarkable. I recommend Poshsaaz to all my clients.",
+  },
+  {
+    id: 4,
+    name: "Noor Hassan",
+    role: "Customer",
+    rating: 5,
+    text: "Exceeded all my expectations. The bouquet arrived perfectly packaged and looked even better than the photos.",
+  },
+  {
+    id: 5,
+    name: "Leila Syed",
+    role: "Bride",
+    rating: 5,
+    text: "Every detail was perfect. The team was so helpful and the final product was absolutely stunning.",
+  },
+];
