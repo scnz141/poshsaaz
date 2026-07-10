@@ -28,23 +28,23 @@ export default function CTASection() {
   }, []);
 
   return (
-    <section id="contact" className="py-20 sm:py-28 md:py-40 bg-white relative">
+    <section id="contact" className="py-32 sm:py-40 md:py-56 bg-white relative">
       <div className="absolute top-0 left-0 right-0 h-px divider-custom" />
       
-      <div ref={contentRef} className="container text-center max-w-3xl">
-        <div className="w-12 h-1 bg-[#c4184c] mx-auto mb-8" />
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#2a2420] mb-6">
+      <div ref={contentRef} className="container text-center max-w-4xl">
+        <div className="w-24 h-2 bg-gradient-to-r from-[#c4184c] to-[#e8a0b8] mx-auto mb-12" />
+        <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-[#2a2420] mb-10">
           Let's Create Together
         </h2>
-        <p className="text-lg sm:text-xl text-[#7a7470] mb-12 leading-relaxed">
+        <p className="text-2xl sm:text-3xl text-[#7a7470] mb-16 leading-relaxed font-light">
           Have a special request? Want to collaborate? We'd love to hear from you. Reach out and let's bring your vision to life.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="mailto:hello@poshsaaz.com" className="btn-primary">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <a href="mailto:hello@poshsaaz.com" className="px-12 py-5 bg-[#c4184c] text-white font-semibold rounded-none transition-all duration-300 hover:bg-[#a01a3a] active:scale-95 hover:shadow-2xl text-lg">
             Get in Touch
           </a>
-          <a href="#work" className="btn-secondary">
+          <a href="#work" className="px-12 py-5 border-2 border-[#2a2420] text-[#2a2420] font-semibold rounded-none transition-all duration-300 hover:bg-[#2a2420] hover:text-white active:scale-95 text-lg">
             View Collections
           </a>
         </div>
