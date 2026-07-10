@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/sections/Footer";
 import ProductModal from "@/components/ProductModal";
@@ -6,82 +6,30 @@ import { products } from "@/lib/products";
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const collectionsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Animate hero elements on load
-    if (heroRef.current) {
-      const heroElements = heroRef.current.querySelectorAll(".hero-animate");
-      heroElements.forEach((el, idx) => {
-        (el as HTMLElement).style.opacity = "0";
-        (el as HTMLElement).style.transform = "translateY(30px)";
-        setTimeout(() => {
-          (el as HTMLElement).style.transition = "all 1.2s cubic-bezier(0.23, 1, 0.32, 1)";
-          (el as HTMLElement).style.opacity = "1";
-          (el as HTMLElement).style.transform = "translateY(0)";
-        }, idx * 200);
-      });
-    }
-
-    // Collection cards scroll animation
-    if (collectionsRef.current) {
-      const cards = collectionsRef.current.querySelectorAll(".collection-card");
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, idx) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              (entry.target as HTMLElement).style.opacity = "1";
-              (entry.target as HTMLElement).style.transform = "translateY(0)";
-            }, idx * 100);
-          }
-        });
-      }, observerOptions);
-
-      cards.forEach((card) => {
-        (card as HTMLElement).style.opacity = "0";
-        (card as HTMLElement).style.transform = "translateY(50px)";
-        (card as HTMLElement).style.transition = "all 0.8s cubic-bezier(0.23, 1, 0.32, 1)";
-        observer.observe(card);
-      });
-    }
-  }, []);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   return (
-    <div className="min-h-screen bg-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-pink-50 overflow-hidden">
       <Header onProductClick={(id) => setSelectedProduct(id)} />
 
       {/* Hero Section */}
-      <section
-        ref={heroRef}
-        className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-20"
-      >
-        {/* Background Image with Parallax */}
-        <div className="absolute inset-0 opacity-40">
-          <img
-            src="/manus-storage/hero_light_premium_d4e2f1a9.png"
-            alt="Hero Background"
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        {/* Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-100/40 via-amber-50/20 to-rose-100/30" />
 
-        {/* Animated Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-gray-900/50" />
+        {/* Decorative Elements */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-pink-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-amber-200/10 rounded-full blur-3xl" />
 
         {/* Content */}
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl">
-          <h1 className="hero-animate text-6xl md:text-8xl font-light mb-6 leading-tight">
-            Bloom with <span className="font-bold">Elegance</span>
+        <div className="relative z-10 text-center px-4 max-w-5xl">
+          <h1 className="text-6xl md:text-8xl font-light text-gray-900 mb-6 leading-tight animate-fade-in">
+            Bloom with <span className="font-bold text-rose-600">Elegance</span>
           </h1>
-          <p className="hero-animate text-xl md:text-2xl font-light mb-12 text-gray-300">
+          <p className="text-xl md:text-2xl font-light text-gray-700 mb-12 animate-fade-in-delay">
             Handcrafted floral accessories from Kashmir
           </p>
-          <button className="hero-animate px-8 py-4 bg-white text-gray-900 font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 active:scale-95">
+          <button className="px-10 py-4 bg-rose-600 text-white font-semibold rounded-full hover:bg-rose-700 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl animate-fade-in-delay-2">
             Explore Collections
           </button>
         </div>
@@ -90,7 +38,7 @@ export default function Home() {
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
           <div className="animate-bounce">
             <svg
-              className="w-6 h-6 text-white"
+              className="w-6 h-6 text-rose-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -107,7 +55,7 @@ export default function Home() {
       </section>
 
       {/* Collections Section */}
-      <section ref={collectionsRef} className="py-24 md:py-32 bg-white">
+      <section className="py-24 md:py-32 bg-white relative">
         <div className="container px-4 md:px-0">
           <div className="mb-16">
             <h2 className="text-5xl md:text-7xl font-light text-gray-900 mb-6">
@@ -123,17 +71,17 @@ export default function Home() {
               <div
                 key={product.id}
                 onClick={() => setSelectedProduct(product.id)}
-                className="collection-card group cursor-pointer"
+                className="group cursor-pointer transform transition-all duration-500 hover:-translate-y-2"
               >
-                <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-6 bg-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500">
+                <div className="relative w-full aspect-square rounded-3xl overflow-hidden mb-6 bg-gradient-to-br from-pink-100 to-amber-100 shadow-lg hover:shadow-2xl transition-all duration-500">
                   <img
                     src={product.image}
                     alt={product.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-gray-600 transition-colors">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-rose-600 transition-colors">
                   {product.title}
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -146,12 +94,12 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-24 md:py-32 bg-gray-50">
+      <section className="py-24 md:py-32 bg-gradient-to-r from-pink-50 to-amber-50">
         <div className="container px-4 md:px-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div>
               <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-8">
-                Handmade with <span className="font-bold">Love</span>
+                Handmade with <span className="font-bold text-rose-600">Love</span>
               </h2>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                 Each piece in our collection is carefully handcrafted by artisans in Kashmir, using traditional techniques passed down through generations.
@@ -160,7 +108,7 @@ export default function Home() {
                 We believe in creating timeless pieces that celebrate the beauty of handmade craftsmanship and the rich heritage of Kashmir.
               </p>
             </div>
-            <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl">
               <img
                 src="/manus-storage/collection_packaging_light.png"
                 alt="Handmade Process"
@@ -175,7 +123,7 @@ export default function Home() {
       <section className="py-24 md:py-32 bg-white">
         <div className="container px-4 md:px-0">
           <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-16">
-            Why Choose <span className="font-bold">Poshsaaz</span>
+            Why Choose <span className="font-bold text-rose-600">Poshsaaz</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -200,7 +148,7 @@ export default function Home() {
             ].map((feature, idx) => (
               <div
                 key={idx}
-                className="p-8 md:p-10 border-2 border-gray-200 rounded-2xl hover:border-gray-900 hover:shadow-xl transition-all duration-500 group cursor-pointer"
+                className="p-8 md:p-10 border-2 border-rose-200 rounded-2xl hover:border-rose-600 hover:shadow-xl transition-all duration-500 group cursor-pointer bg-gradient-to-br from-white to-pink-50/50"
               >
                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
                   {feature.icon}
@@ -218,19 +166,23 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-        <div className="container px-4 md:px-0 text-center">
+      <section className="py-24 md:py-32 bg-gradient-to-r from-rose-600 to-pink-600 text-white relative overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -mr-48 -mt-48" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-3xl -ml-36 -mb-36" />
+
+        <div className="container px-4 md:px-0 text-center relative z-10">
           <h2 className="text-5xl md:text-7xl font-light mb-8">
             Ready to <span className="font-bold">Bloom</span>?
           </h2>
-          <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
             Explore our full collection and find the perfect piece for any occasion
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="px-10 py-4 bg-white text-gray-900 font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 active:scale-95">
+            <button className="px-10 py-4 bg-white text-rose-600 font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg">
               Shop Now
             </button>
-            <button className="px-10 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105 active:scale-95">
+            <button className="px-10 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-rose-600 transition-all duration-300 transform hover:scale-105 active:scale-95">
               Contact Us
             </button>
           </div>

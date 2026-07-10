@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useState } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { products } from "@/lib/products";
 
 interface ProductModalProps {
@@ -7,78 +8,149 @@ interface ProductModalProps {
 }
 
 export default function ProductModal({ productId, onClose }: ProductModalProps) {
-  const product = products.find((p) => p.id === productId);
-  const modalRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, [onClose]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const product = productId ? products.find((p) => p.id === productId) : null;
 
   if (!product) return null;
 
+  const images = [product.image, product.image, product.image]; // Use product image multiple times for carousel
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   return (
     <div
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
       onClick={onClose}
     >
       <div
-        ref={modalRef}
-        className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto animate-scale-in"
+        className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 md:p-10">
-          {/* Image */}
-          <div className="flex items-center justify-center">
-            <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-gray-100 shadow-lg">
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-6 right-6 p-2 hover:bg-gray-100 rounded-full transition-colors z-10"
+        >
+          <X size={24} className="text-gray-600" />
+        </button>
 
-          {/* Content */}
-          <div className="flex flex-col justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
-                {product.category}
-              </p>
-              <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
-                {product.title}
-              </h2>
-              <p className="text-lg text-gray-600 mb-6 font-light">
-                {product.description}
-              </p>
-              <p className="text-base text-gray-600 leading-relaxed mb-8 font-light">
-                {product.details}
-              </p>
+        {/* Image Carousel */}
+        <div className="relative w-full bg-gradient-to-br from-pink-100 to-amber-100 aspect-square overflow-hidden">
+          <img
+            src={images[currentImageIndex]}
+            alt={product.title}
+            className="w-full h-full object-cover"
+          />
 
-              <div className="mb-8 pb-8 border-b border-gray-200">
-                <p className="text-sm text-gray-500 uppercase tracking-wide mb-2">
-                  Pricing
-                </p>
-                <p className="text-2xl font-light text-gray-900">
-                  {product.price}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <button className="w-full px-6 py-3 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-all duration-300 active:scale-95">
-                Inquire Now
+          {/* Carousel Controls */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/80 hover:bg-white rounded-full transition-all duration-300 shadow-lg"
+              >
+                <ChevronLeft size={24} className="text-gray-900" />
               </button>
               <button
-                onClick={onClose}
-                className="w-full px-6 py-3 border border-gray-900 text-gray-900 font-medium rounded-full hover:bg-gray-50 transition-all duration-300"
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/80 hover:bg-white rounded-full transition-all duration-300 shadow-lg"
               >
-                Close
+                <ChevronRight size={24} className="text-gray-900" />
               </button>
-            </div>
+
+              {/* Image Indicators */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                {images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImageIndex(idx)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      idx === currentImageIndex
+                        ? "bg-rose-600 w-8"
+                        : "bg-white/50 hover:bg-white/80"
+                    }`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Content */}
+        <div className="p-8 md:p-10">
+          <h2 className="text-4xl font-light text-gray-900 mb-4">
+            {product.title}
+          </h2>
+          <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+            {product.description}
+          </p>
+
+          {/* Features */}
+          <div className="mb-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Features</h3>
+            <ul className="space-y-2 text-gray-700">
+              <li className="flex items-center gap-3">
+                <span className="text-rose-600">✓</span> Handcrafted with premium materials
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-rose-600">✓</span> Lightweight and comfortable
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-rose-600">✓</span> Perfect for any occasion
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-rose-600">✓</span> Made in Kashmir
+              </li>
+            </ul>
+          </div>
+
+          {/* Inquiry Form */}
+          <div className="mb-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Inquire About This Product</h3>
+            <form className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-rose-600 focus:outline-none transition-colors"
+                  placeholder="Enter your name"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-rose-600 focus:outline-none transition-colors"
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Message
+                </label>
+                <textarea
+                  rows={4}
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-rose-600 focus:outline-none transition-colors resize-none"
+                  placeholder="Tell us about your custom request..."
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full px-6 py-3 bg-rose-600 text-white font-semibold rounded-lg hover:bg-rose-700 transition-all duration-300 transform hover:scale-105 active:scale-95"
+              >
+                Send Inquiry
+              </button>
+            </form>
           </div>
         </div>
       </div>
