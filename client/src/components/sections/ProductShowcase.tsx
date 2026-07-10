@@ -59,13 +59,13 @@ export default function ProductShowcase() {
             <div
               key={index}
               ref={(el) => { itemsRef.current[index] = el; }}
-              className={`group glass rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 cursor-pointer tilt-card overflow-hidden relative`}
+              className={`group glass rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 cursor-pointer tilt-card overflow-hidden relative shine`}
             >
               {/* Gradient background */}
               <div className={`absolute inset-0 bg-gradient-to-br ${product.color} to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
 
               <div className="relative z-10">
-                <div className="text-6xl mb-6 transform group-hover:scale-125 transition-transform duration-500 inline-block">
+                <div className="text-6xl mb-6 transform group-hover:scale-125 transition-transform duration-500 inline-block icon-rotate">
                   {product.icon}
                 </div>
 

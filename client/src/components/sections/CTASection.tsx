@@ -44,8 +44,8 @@ export default function CTASection() {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
       </div>
 
-      <div className="container relative z-10">
-        <div ref={contentRef} className="text-center max-w-3xl mx-auto">
+      <div ref={contentRef} className="container relative z-10 max-w-3xl">
+        <div className="text-center">
           <h2 className="text-5xl md:text-6xl font-display font-bold text-white mb-8 leading-tight">
             Ready to <span className="gradient-text">Bloom</span>?
           </h2>
@@ -55,12 +55,12 @@ export default function CTASection() {
           </p>
 
           <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="group px-10 py-5 bg-white text-brand-plum rounded-full font-accent font-bold text-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:scale-95 relative overflow-hidden">
+            <button className="group px-10 py-5 bg-white text-brand-plum rounded-full font-accent font-bold text-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:scale-95 relative overflow-hidden shadow-depth">
               <span className="relative z-10">Discover the Blooms</span>
               <div className="absolute inset-0 bg-gradient-to-r from-brand-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
 
-            <button className="px-10 py-5 glass text-white rounded-full font-accent font-bold text-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:scale-95 border-2 border-white/30">
+            <button className="px-10 py-5 glass text-white rounded-full font-accent font-bold text-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:scale-95 shadow-depth border-2 border-white/30">
               View Collection
             </button>
           </div>
