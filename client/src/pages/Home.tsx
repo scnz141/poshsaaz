@@ -159,13 +159,27 @@ function WhatsAppButton() {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const [lightboxProduct, setLightboxProduct] = useState<typeof COLLECTIONS[0] | null>(null);
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.3], [0, -80]);
   const heroTextY = useTransform(scrollYProgress, [0, 0.2], [0, -40]);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 60);
+      // Active section detection
+      const sections = ["collections", "story", "contact"];
+      let current = "";
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 200) current = id;
+        }
+      }
+      setActiveSection(current);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -205,12 +219,24 @@ export default function Home() {
             </span>
           </a>
           <nav className="hidden md:flex items-center gap-10">
-            {["Collections", "Story", "Contact"].map((item) => (
+            {["Collections", "Story", "Contact", "Products"].map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-[13px] tracking-[0.06em] uppercase text-[#6b5a5a] hover:text-[#4a2040] transition-colors duration-300"
-                style={{ fontWeight: 400 }}
+                href={item === "Products" ? "/products" : `#${item.toLowerCase()}`}
+                onClick={(e) => {
+                  if (item !== "Products") {
+                    e.preventDefault();
+                    const el = document.getElementById(item.toLowerCase());
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                    setMenuOpen(false);
+                  }
+                }}
+                className={`text-[13px] tracking-[0.06em] uppercase transition-colors duration-300 ${
+                  activeSection === item.toLowerCase()
+                    ? "text-[#4a2040] font-medium"
+                    : "text-[#6b5a5a] hover:text-[#4a2040]"
+                }`}
+                style={{ fontWeight: activeSection === item.toLowerCase() ? 500 : 400 }}
               >
                 {item}
               </a>
@@ -230,13 +256,20 @@ export default function Home() {
               className="md:hidden bg-[#faf8f5] border-t border-[#e8e0d8] overflow-hidden"
             >
               <div className="px-6 py-8 flex flex-col gap-6">
-                {["Collections", "Story", "Contact"].map((item) => (
+                {["Collections", "Story", "Contact", "Products"].map((item) => (
                   <a
                     key={item}
-                    href={`#${item.toLowerCase()}`}
+                    href={item === "Products" ? "/products" : `#${item.toLowerCase()}`}
                     className="text-lg text-[#4a2040]"
                     style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={(e) => {
+                      if (item !== "Products") {
+                        e.preventDefault();
+                        const el = document.getElementById(item.toLowerCase());
+                        if (el) el.scrollIntoView({ behavior: "smooth" });
+                      }
+                      setMenuOpen(false);
+                    }}
                   >
                     {item}
                   </a>
