@@ -1,135 +1,85 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "wouter";
+import { Menu, X } from "lucide-react";
 
 interface HeaderProps {
   onProductClick?: (id: number) => void;
 }
 
 export default function Header({ onProductClick }: HeaderProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [, navigate] = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+  const [location] = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const navItems = [
+    { label: "Home", href: "/" },
+    { label: "Collections", href: "#collections" },
+    { label: "Products", href: "/products" },
+    { label: "Contact", href: "/contact" },
+  ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/80 backdrop-blur-md shadow-sm"
-          : "bg-white"
-      }`}
-    >
-      <div className="container px-4 md:px-0 py-4 md:py-5 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100">
+      <div className="container px-4 md:px-0 py-4 flex items-center justify-between">
         {/* Logo */}
-        <button
-          onClick={() => navigate("/")}
-          className="text-lg md:text-xl font-light text-gray-900 hover:text-gray-600 transition-colors"
-        >
+        <a href="/" className="text-xl md:text-2xl font-semibold text-gray-900">
           POSHSAAZ
-        </button>
+        </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 lg:gap-12">
-          <a
-            href="#collections"
-            className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            Collections
-          </a>
-          <button
-            onClick={() => navigate("/products")}
-            className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            Products
-          </button>
-          <a
-            href="#about"
-            className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            About
-          </a>
-          <a
-            href="#contact"
-            className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            Contact
-          </a>
+        <nav className="hidden md:flex items-center gap-8">
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
 
         {/* CTA Button */}
-        <button className="hidden md:block px-6 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all duration-300 active:scale-95">
+        <a
+          href="/contact"
+          className="hidden md:block px-6 py-2 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
+        >
           Inquire
-        </button>
+        </a>
 
         {/* Mobile Menu Button */}
         <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          onClick={() => setIsOpen(!isOpen)}
           className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
         >
-          <svg
-            className="w-6 h-6 text-gray-900"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d={
-                isMobileMenuOpen
-                  ? "M6 18L18 6M6 6l12 12"
-                  : "M4 6h16M4 12h16M4 18h16"
-              }
-            />
-          </svg>
+          {isOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white">
+      {/* Mobile Navigation */}
+      {isOpen && (
+        <div className="md:hidden border-t border-gray-100 bg-white">
           <nav className="container px-4 py-4 flex flex-col gap-4">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-gray-700 hover:text-gray-900 font-medium py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
             <a
-              href="#collections"
-              className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
+              href="/contact"
+              className="px-6 py-2 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors text-center"
+              onClick={() => setIsOpen(false)}
             >
-              Collections
-            </a>
-            <button
-              onClick={() => {
-                navigate("/products");
-                setIsMobileMenuOpen(false);
-              }}
-              className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors py-2 text-left"
-            >
-              Products
-            </button>
-            <a
-              href="#about"
-              className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              About
-            </a>
-            <a
-              href="#contact"
-              className="text-sm font-light text-gray-600 hover:text-gray-900 transition-colors py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Contact
-            </a>
-            <button className="w-full px-6 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all duration-300 mt-2">
               Inquire
-            </button>
+            </a>
           </nav>
         </div>
       )}

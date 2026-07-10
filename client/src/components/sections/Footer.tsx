@@ -1,43 +1,78 @@
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-gray-900 text-white py-12 md:py-16 lg:py-20">
+    <footer className="bg-gray-900 text-white py-12 md:py-16">
       <div className="container px-4 md:px-0">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 lg:gap-16 mb-12 md:mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 md:mb-12">
+          {/* Brand */}
           <div>
-            <h3 className="text-base md:text-lg font-light mb-4 md:mb-6">POSHSAAZ</h3>
-            <p className="text-gray-400 font-light text-xs md:text-sm">Handcrafted floral elegance from Kashmir.</p>
+            <h3 className="text-lg font-semibold mb-4">POSHSAAZ</h3>
+            <p className="text-gray-400 text-sm">
+              Handcrafted floral accessories from Kashmir
+            </p>
           </div>
 
+          {/* Links */}
           <div>
-            <h4 className="text-xs md:text-sm font-medium mb-4 md:mb-6 text-white uppercase tracking-wide">Collections</h4>
-            <ul className="space-y-2 md:space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-xs md:text-sm font-light">Hairbands</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-xs md:text-sm font-light">Bouquets</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-xs md:text-sm font-light">Details</a></li>
+            <h4 className="font-semibold mb-4">Company</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="/" className="hover:text-white transition-colors">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="/products" className="hover:text-white transition-colors">
+                  Products
+                </a>
+              </li>
+              <li>
+                <a href="/contact" className="hover:text-white transition-colors">
+                  Contact
+                </a>
+              </li>
             </ul>
           </div>
 
+          {/* Support */}
           <div>
-            <h4 className="text-xs md:text-sm font-medium mb-4 md:mb-6 text-white uppercase tracking-wide">Company</h4>
-            <ul className="space-y-2 md:space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-xs md:text-sm font-light">About</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-xs md:text-sm font-light">Contact</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-xs md:text-sm font-light">Inquire</a></li>
+            <h4 className="font-semibold mb-4">Support</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="mailto:hashimdar141@gmail.com" className="hover:text-white transition-colors">
+                  Email Us
+                </a>
+              </li>
+              <li>
+                <a href="https://instagram.com/poshsaaz" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  Instagram
+                </a>
+              </li>
             </ul>
           </div>
 
+          {/* Social */}
           <div>
-            <h4 className="text-xs md:text-sm font-medium mb-4 md:mb-6 text-white uppercase tracking-wide">Follow</h4>
-            <ul className="space-y-2 md:space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-xs md:text-sm font-light">Instagram</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-xs md:text-sm font-light">Facebook</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-xs md:text-sm font-light">Pinterest</a></li>
+            <h4 className="font-semibold mb-4">Follow</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="https://instagram.com/poshsaaz" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href="https://facebook.com/poshsaaz" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  Facebook
+                </a>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 md:pt-12 text-center">
-          <p className="text-gray-500 text-xs md:text-sm font-light">© 2026 Poshsaaz. All rights reserved. Handcrafted with love from Kashmir.</p>
+        {/* Divider */}
+        <div className="border-t border-gray-800 pt-8">
+          <p className="text-center text-sm text-gray-400">
+            © 2026 Poshsaaz. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
