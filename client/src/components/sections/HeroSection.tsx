@@ -1,86 +1,114 @@
- import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
- export default function HeroSection() {
-   const titleRef = useRef<HTMLDivElement>(null);
-   const subtitleRef = useRef<HTMLDivElement>(null);
-   const ctaRef = useRef<HTMLDivElement>(null);
+export default function HeroSection() {
+  const titleRef = useRef<HTMLDivElement>(null);
+  const subtitleRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const floatingRef = useRef<HTMLDivElement>(null);
 
-   useEffect(() => {
-     const gsap = (window as any).gsap;
-     if (!gsap) return;
+  useEffect(() => {
+    const gsap = (window as any).gsap;
+    if (!gsap) return;
 
-     gsap.fromTo(
-       titleRef.current,
-       { opacity: 0, y: 30 },
-       { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.2 }
-     );
+    // Animate title with dramatic entrance
+    gsap.fromTo(
+      titleRef.current,
+      { opacity: 0, y: 60, scale: 0.9 },
+      { opacity: 1, y: 0, scale: 1, duration: 1.2, ease: "power3.out", delay: 0.3 }
+    );
 
-     gsap.fromTo(
-       subtitleRef.current,
-       { opacity: 0, y: 20 },
-       { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.4 }
-     );
+    // Animate subtitle with stagger
+    gsap.fromTo(
+      subtitleRef.current,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.6 }
+    );
 
-     gsap.fromTo(
-       ctaRef.current,
-       { opacity: 0, scale: 0.9 },
-       { opacity: 1, scale: 1, duration: 0.8, ease: "back.out", delay: 0.6 }
-     );
-   }, []);
+    // Animate CTA buttons
+    gsap.fromTo(
+      ctaRef.current?.querySelectorAll("button"),
+      { opacity: 0, scale: 0.8 },
+      { opacity: 1, scale: 1, duration: 0.8, stagger: 0.15, ease: "back.out", delay: 0.9 }
+    );
 
-   return (
-     <section className="relative w-full h-screen flex items-center justify-start overflow-hidden pt-20">
-       <div
-         className="absolute inset-0 bg-cover bg-center"
-         style={{
-           backgroundImage: "url(/manus-storage/hero_bouquet_b6655196.png)",
-           backgroundPosition: "right center",
-         }}
-       >
-         <div className="absolute inset-0 bg-gradient-to-r from-brand-cream via-brand-cream/80 to-transparent" />
-       </div>
+    // Floating animation for elements
+    gsap.to(floatingRef.current, {
+      y: -30,
+      duration: 4,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+  }, []);
 
-       <div className="container relative z-10 max-w-2xl">
-         <div ref={titleRef} className="mb-6">
-           <div className="flex items-center gap-3 mb-4">
-             <div className="w-12 h-12 rounded-full bg-brand-plum/10 flex items-center justify-center">
-               <span className="text-2xl">👑</span>
-             </div>
-             <span className="text-brand-plum font-accent text-sm font-semibold uppercase tracking-widest">
-               Handmade with Love
-             </span>
-           </div>
-           <h1 className="text-5xl md:text-7xl font-display font-bold text-gray-900 leading-tight">
-             Bloom With
-             <br />
-             <span className="text-brand-plum italic">Elegance</span>
-           </h1>
-         </div>
+  return (
+    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-gradient-to-br from-brand-cream via-brand-blush to-brand-lavender/50">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-10 left-10 w-72 h-72 bg-brand-plum/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-brand-sage/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+      </div>
 
-         <div ref={subtitleRef} className="mb-8 max-w-xl">
-           <p className="text-lg text-gray-700 leading-relaxed">
-             Handcrafted pipe cleaner hair bands and floral accessories from Kashmir. Each bloom is shaped by hand, each moment made special.
-           </p>
-         </div>
+      <div className="container relative z-10 max-w-5xl">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Left content */}
+          <div>
+            <div ref={titleRef} className="mb-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-14 h-14 rounded-full glass flex items-center justify-center glow">
+                  <span className="text-2xl">✿</span>
+                </div>
+                <span className="text-brand-plum font-accent text-xs font-bold uppercase tracking-widest">
+                  Handmade Excellence
+                </span>
+              </div>
+              <h1 className="text-6xl md:text-7xl font-display font-bold leading-tight mb-4">
+                <span className="gradient-text">Bloom</span>
+                <br />
+                <span className="text-gray-900">With</span>
+                <br />
+                <span className="text-brand-plum italic">Elegance</span>
+              </h1>
+            </div>
 
-         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4">
-           <button className="px-8 py-4 bg-brand-plum text-white rounded-full font-accent font-semibold text-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 active:scale-95">
-             Shop Collection
-           </button>
-           <button className="px-8 py-4 bg-white/80 backdrop-blur text-brand-plum rounded-full font-accent font-semibold text-lg border-2 border-brand-plum hover:bg-white transition-all duration-300">
-             Learn More
-           </button>
-         </div>
-       </div>
+            <div ref={subtitleRef} className="mb-10">
+              <p className="text-lg text-gray-700 leading-relaxed max-w-lg">
+                Handcrafted pipe cleaner hair bands and floral accessories from Kashmir. Each bloom is shaped by hand, each moment made special with premium quality and artistic vision.
+              </p>
+            </div>
 
-       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-         <div className="flex flex-col items-center gap-2">
-           <span className="text-xs font-accent text-gray-600 uppercase tracking-widest">Scroll</span>
-           <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-             <div className="w-1 h-2 bg-gray-400 rounded-full mt-2 animate-bounce" />
-           </div>
-         </div>
-       </div>
-     </section>
-   );
- }
+            <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4">
+              <button className="group px-8 py-4 bg-gradient-to-r from-brand-plum to-brand-plum/80 text-white rounded-full font-accent font-bold text-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:scale-95 relative overflow-hidden">
+                <span className="relative z-10">Discover the Blooms</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-plum/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
+              <button className="px-8 py-4 glass text-brand-plum rounded-full font-accent font-bold text-lg hover:glass-dark transition-all duration-300 hover:-translate-y-1 active:scale-95">
+                Learn Our Story
+              </button>
+            </div>
+          </div>
+
+          {/* Right floating image */}
+          <div ref={floatingRef} className="relative h-96 md:h-full">
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-plum/20 to-brand-sage/20 rounded-3xl blur-2xl" />
+            <img
+              src="/manus-storage/hero_bouquet_b6655196.png"
+              alt="Handmade floral bouquet"
+              className="relative w-full h-full object-cover rounded-3xl shadow-2xl tilt-card"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="flex flex-col items-center gap-3">
+          <span className="text-xs font-accent text-brand-plum uppercase tracking-widest font-bold">Scroll to Explore</span>
+          <div className="w-6 h-10 border-2 border-brand-plum rounded-full flex justify-center p-2">
+            <div className="w-1 h-2 bg-brand-plum rounded-full animate-bounce" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
