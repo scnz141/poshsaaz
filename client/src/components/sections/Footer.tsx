@@ -1,41 +1,44 @@
 export default function Footer() {
   return (
-    <footer className="py-12 sm:py-16 md:py-20 bg-gray-900 text-white border-t border-gray-800">
+    <footer className="py-16 sm:py-20 md:py-24 bg-[#2a2420] text-white relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c4184c] to-transparent" />
+      
       <div className="container">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 mb-12 sm:mb-16">
           <div>
-            <h4 className="font-bold text-white mb-4 text-sm sm:text-base">POSHSAAZ®</h4>
-            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">Handmade floral accessories crafted with love from Kashmir</p>
+            <h4 className="font-bold text-white mb-4 text-sm">POSHSAAZ</h4>
+            <p className="text-[#a0938a] text-xs leading-relaxed">Handmade from Kashmir with love and precision</p>
           </div>
           <div>
-            <h4 className="font-bold text-white mb-4 text-sm sm:text-base">Explore</h4>
-            <ul className="space-y-2 text-xs sm:text-sm">
-              <li><a href="#work" className="text-gray-400 hover:text-pink-400 transition-colors">Collections</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-pink-400 transition-colors">About Us</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-pink-400 transition-colors">Custom Orders</a></li>
+            <h4 className="font-bold text-white mb-4 text-sm">Explore</h4>
+            <ul className="space-y-2 text-xs">
+              <li><a href="#work" className="text-[#a0938a] hover:text-[#e8a0b8] transition-colors">Collections</a></li>
+              <li><a href="#" className="text-[#a0938a] hover:text-[#e8a0b8] transition-colors">About</a></li>
+              <li><a href="#" className="text-[#a0938a] hover:text-[#e8a0b8] transition-colors">Custom Orders</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-white mb-4 text-sm sm:text-base">Connect</h4>
-            <ul className="space-y-2 text-xs sm:text-sm">
-              <li><a href="#" className="text-gray-400 hover:text-pink-400 transition-colors">Instagram</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-pink-400 transition-colors">Facebook</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-pink-400 transition-colors">Email</a></li>
+            <h4 className="font-bold text-white mb-4 text-sm">Connect</h4>
+            <ul className="space-y-2 text-xs">
+              <li><a href="#" className="text-[#a0938a] hover:text-[#e8a0b8] transition-colors">Instagram</a></li>
+              <li><a href="#" className="text-[#a0938a] hover:text-[#e8a0b8] transition-colors">Facebook</a></li>
+              <li><a href="mailto:hello@poshsaaz.com" className="text-[#a0938a] hover:text-[#e8a0b8] transition-colors">Email</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-white mb-4 text-sm sm:text-base">Legal</h4>
-            <ul className="space-y-2 text-xs sm:text-sm">
-              <li><a href="#" className="text-gray-400 hover:text-pink-400 transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-pink-400 transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-pink-400 transition-colors">Contact</a></li>
+            <h4 className="font-bold text-white mb-4 text-sm">Legal</h4>
+            <ul className="space-y-2 text-xs">
+              <li><a href="#" className="text-[#a0938a] hover:text-[#e8a0b8] transition-colors">Privacy</a></li>
+              <li><a href="#" className="text-[#a0938a] hover:text-[#e8a0b8] transition-colors">Terms</a></li>
+              <li><a href="#" className="text-[#a0938a] hover:text-[#e8a0b8] transition-colors">Contact</a></li>
             </ul>
           </div>
         </div>
-        <div className="border-t border-gray-800 pt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-xs sm:text-sm text-gray-400">© 2026 Poshsaaz. All rights reserved. Handmade with love.</p>
-            <p className="text-xs sm:text-sm text-gray-400">Made in Kashmir 🇮🇳</p>
+        
+        <div className="border-t border-[#4a4440] pt-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#a0938a]">
+            <p>© 2026 Poshsaaz. All rights reserved.</p>
+            <p>Handmade in Kashmir 🇮🇳</p>
           </div>
         </div>
       </div>

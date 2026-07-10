@@ -13,19 +13,20 @@ export default function PortfolioGrid() {
 
     itemsRef.current.forEach((item, index) => {
       if (!item) return;
+      const isEven = index % 2 === 0;
       gsap.fromTo(
         item,
-        { opacity: 0, y: 100, rotateX: 20 },
+        { opacity: 0, x: isEven ? -100 : 100, rotateY: 20 },
         {
           opacity: 1,
-          y: 0,
-          rotateX: 0,
-          duration: 1.2,
-          delay: index * 0.25,
-          ease: "power3.out",
+          x: 0,
+          rotateY: 0,
+          duration: 1.4,
+          delay: index * 0.2,
+          ease: "cubic-bezier(0.34, 1.56, 0.64, 1)",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 70%",
+            start: "top 60%",
           },
         }
       );
@@ -34,40 +35,43 @@ export default function PortfolioGrid() {
 
   const projects = [
     { 
-      title: "Hairbands", 
+      title: "Floral Hairbands", 
       image: "/manus-storage/collection_hairbands_light_0ba7db5e.png",
-      description: "Vibrant & Comfortable"
+      description: "Vibrant blooms on navy bases"
     },
     { 
-      title: "Bouquets", 
+      title: "Artisan Bouquets", 
       image: "/manus-storage/collection_bouquets_light_f1e34783.png",
-      description: "Perfect Gifts"
+      description: "Perfect for special moments"
     },
     { 
-      title: "Details", 
+      title: "Intricate Details", 
       image: "/manus-storage/collection_details_light_8285b138.png",
-      description: "Intricate Craftsmanship"
+      description: "Craftsmanship you can feel"
     },
     { 
-      title: "Packaging", 
+      title: "Premium Packaging", 
       image: "/manus-storage/collection_packaging_light_567f071c.png",
-      description: "Premium Experience"
+      description: "Unboxing experience"
     },
   ];
 
   return (
-    <section id="work" className="py-16 sm:py-24 md:py-32 lg:py-40 bg-white">
+    <section id="work" className="py-20 sm:py-28 md:py-40 bg-white relative">
+      <div className="absolute top-0 left-0 right-0 h-px divider-custom" />
+      
       <div className="container">
-        <div className="text-center mb-12 sm:mb-16 md:mb-20">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 text-gray-900">
-            Collections
+        <div className="mb-20 md:mb-32">
+          <div className="w-12 h-1 bg-[#c4184c] mb-8" />
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#2a2420] mb-6">
+            Our Collections
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover our carefully curated selection of handmade floral accessories, each piece crafted with love and precision
+          <p className="text-lg text-[#7a7470] max-w-2xl">
+            Each collection represents our commitment to handmade excellence and timeless beauty.
           </p>
         </div>
 
-        <div ref={containerRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+        <div ref={containerRef} className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
           {projects.map((project, index) => (
             <div
               key={index}
@@ -76,21 +80,21 @@ export default function PortfolioGrid() {
               }}
               className="group cursor-pointer"
             >
-              <div className="h-64 sm:h-72 md:h-80 relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 mb-4">
+              <div className="relative h-72 sm:h-80 md:h-96 overflow-hidden mb-6 bg-[#ede5df]">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-1000 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1200 ease-out"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-700" />
-                <div className="absolute inset-0 flex items-end justify-start p-4 sm:p-6">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    {project.title}
-                  </h3>
-                </div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-700" />
               </div>
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">{project.title}</h4>
-              <p className="text-sm sm:text-base text-gray-600">{project.description}</p>
+              <div className="relative">
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#2a2420] mb-2 group-hover:text-[#c4184c] transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-[#7a7470] text-sm sm:text-base">{project.description}</p>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#c4184c] group-hover:w-12 transition-all duration-500 mt-4" />
+              </div>
             </div>
           ))}
         </div>
