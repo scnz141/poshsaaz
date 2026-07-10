@@ -1,199 +1,447 @@
-import { useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/sections/Footer";
-import ProductModal from "@/components/ProductModal";
-import { products } from "@/lib/products";
+import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
+import { Menu, X, ArrowDown, ArrowUpRight } from "lucide-react";
+
+const IMAGES = {
+  hero: "/manus-storage/hero_light_premium_e6730c17.png",
+  hairbands: "/manus-storage/collection_hairbands_light_4f1cedc3.png",
+  bouquets: "/manus-storage/collection_bouquets_light_d773206d.png",
+  details: "/manus-storage/collection_details_light_2767e0bf.png",
+  packaging: "/manus-storage/collection_packaging_light_3077cd31.png",
+};
+
+function RevealSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.9, delay, ease: [0.23, 1, 0.32, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default function Home() {
-  const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const heroY = useTransform(scrollYProgress, [0, 0.3], [0, -80]);
+  const heroTextY = useTransform(scrollYProgress, [0, 0.2], [0, -40]);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-pink-50 overflow-hidden">
-      <Header onProductClick={(id) => setSelectedProduct(id)} />
-
-      {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-100/40 via-amber-50/20 to-rose-100/30" />
-
-        {/* Decorative Elements */}
-        <div className="absolute top-20 right-10 w-72 h-72 bg-pink-200/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-amber-200/10 rounded-full blur-3xl" />
-
-        {/* Content */}
-        <div className="relative z-10 text-center px-4 max-w-5xl">
-          <h1 className="text-6xl md:text-8xl font-light text-gray-900 mb-6 leading-tight animate-fade-in">
-            Bloom with <span className="font-bold text-rose-600">Elegance</span>
-          </h1>
-          <p className="text-xl md:text-2xl font-light text-gray-700 mb-12 animate-fade-in-delay">
-            Handcrafted floral accessories from Kashmir
-          </p>
-          <button className="px-10 py-4 bg-rose-600 text-white font-semibold rounded-full hover:bg-rose-700 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl animate-fade-in-delay-2">
-            Explore Collections
+    <div className="min-h-screen" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+      {/* Navigation */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+          scrolled
+            ? "bg-[#faf8f5]/95 backdrop-blur-lg shadow-[0_1px_0_rgba(0,0,0,0.04)]"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+          <a href="#" className="flex items-center gap-2">
+            <span
+              className="text-xl tracking-[0.02em]"
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500, color: "#4a2040" }}
+            >
+              Poshsaaz
+            </span>
+          </a>
+          <nav className="hidden md:flex items-center gap-10">
+            {["Collections", "Story", "Contact"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-[13px] tracking-[0.06em] uppercase text-[#6b5a5a] hover:text-[#4a2040] transition-colors duration-300"
+                style={{ fontWeight: 400 }}
+              >
+                {item}
+              </a>
+            ))}
+          </nav>
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-[#4a2040]">
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-          <div className="animate-bounce">
-            <svg
-              className="w-6 h-6 text-rose-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-[#faf8f5] border-t border-[#e8e0d8] overflow-hidden"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
+              <div className="px-6 py-8 flex flex-col gap-6">
+                {["Collections", "Story", "Contact"].map((item) => (
+                  <a
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    className="text-lg text-[#4a2040]"
+                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {item}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+
+      {/* Hero Section - Asymmetric Layout */}
+      <section className="relative min-h-screen flex items-end pb-20 md:pb-32 overflow-hidden bg-[#faf8f5]">
+        <motion.div style={{ y: heroY }} className="absolute inset-0">
+          <img
+            src={IMAGES.hero}
+            alt="Poshsaaz handcrafted floral accessories"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#faf8f5] via-[#faf8f5]/40 to-transparent" />
+        </motion.div>
+
+        <motion.div
+          style={{ y: heroTextY }}
+          className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 w-full"
+        >
+          <div className="max-w-2xl">
+            <motion.p
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-[11px] tracking-[0.25em] uppercase text-[#8b6f6f] mb-5"
+            >
+              Handcrafted in Kashmir
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 1 }}
+              className="text-[clamp(2.5rem,8vw,6rem)] leading-[1.05] mb-6"
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#2d1a2d" }}
+            >
+              Where petals
+              <br />
+              <em className="font-normal" style={{ fontStyle: "italic" }}>bloom forever</em>
+            </motion.h1>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+            >
+              <a
+                href="#collections"
+                className="inline-flex items-center gap-3 text-[12px] tracking-[0.15em] uppercase text-[#4a2040] hover:gap-4 transition-all duration-500"
+              >
+                Explore
+                <ArrowDown size={14} />
+              </a>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Collections - Asymmetric Editorial Grid */}
+      <section id="collections" className="py-28 md:py-44 px-6 md:px-10 bg-[#faf8f5]">
+        <div className="max-w-[1400px] mx-auto">
+          <RevealSection>
+            <p className="text-[11px] tracking-[0.25em] uppercase text-[#8b6f6f] mb-3">
+              Collections
+            </p>
+            <h2
+              className="text-[clamp(2rem,5vw,4rem)] leading-[1.1] mb-20 max-w-lg"
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#2d1a2d" }}
+            >
+              Each piece, a quiet
+              <br />
+              <em>celebration</em>
+            </h2>
+          </RevealSection>
+
+          {/* Asymmetric Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+            {/* Large left */}
+            <RevealSection className="md:col-span-7" delay={0.1}>
+              <motion.a
+                href="#"
+                whileHover={{ scale: 0.985 }}
+                transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                className="block group relative"
+              >
+                <div className="aspect-[4/5] overflow-hidden">
+                  <img
+                    src={IMAGES.hairbands}
+                    alt="Floral Hairbands"
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[1.2s] ease-out"
+                  />
+                </div>
+                <div className="mt-5 flex items-start justify-between">
+                  <div>
+                    <h3
+                      className="text-2xl mb-1"
+                      style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, color: "#2d1a2d" }}
+                    >
+                      Floral Hairbands
+                    </h3>
+                    <p className="text-[13px] text-[#8b6f6f]">Pearls & petals, woven by hand</p>
+                  </div>
+                  <ArrowUpRight
+                    size={18}
+                    className="text-[#8b6f6f] group-hover:text-[#4a2040] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-500 mt-1"
+                  />
+                </div>
+              </motion.a>
+            </RevealSection>
+
+            {/* Right column - stacked */}
+            <div className="md:col-span-5 flex flex-col gap-6 md:gap-8">
+              <RevealSection delay={0.2}>
+                <motion.a
+                  href="#"
+                  whileHover={{ scale: 0.985 }}
+                  transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                  className="block group relative"
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={IMAGES.bouquets}
+                      alt="Artisan Bouquets"
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[1.2s] ease-out"
+                    />
+                  </div>
+                  <div className="mt-5 flex items-start justify-between">
+                    <div>
+                      <h3
+                        className="text-xl mb-1"
+                        style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, color: "#2d1a2d" }}
+                      >
+                        Artisan Bouquets
+                      </h3>
+                      <p className="text-[13px] text-[#8b6f6f]">Everlasting blooms, gifted with love</p>
+                    </div>
+                    <ArrowUpRight
+                      size={16}
+                      className="text-[#8b6f6f] group-hover:text-[#4a2040] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-500 mt-1"
+                    />
+                  </div>
+                </motion.a>
+              </RevealSection>
+
+              <RevealSection delay={0.3}>
+                <motion.a
+                  href="#"
+                  whileHover={{ scale: 0.985 }}
+                  transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                  className="block group relative"
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={IMAGES.details}
+                      alt="Intricate Details"
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[1.2s] ease-out"
+                    />
+                  </div>
+                  <div className="mt-5 flex items-start justify-between">
+                    <div>
+                      <h3
+                        className="text-xl mb-1"
+                        style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, color: "#2d1a2d" }}
+                      >
+                        Hair Clips & Combs
+                      </h3>
+                      <p className="text-[13px] text-[#8b6f6f]">Delicate details, timeless grace</p>
+                    </div>
+                    <ArrowUpRight
+                      size={16}
+                      className="text-[#8b6f6f] group-hover:text-[#4a2040] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-500 mt-1"
+                    />
+                  </div>
+                </motion.a>
+              </RevealSection>
+            </div>
+          </div>
+
+          {/* Full-width piece */}
+          <RevealSection className="mt-8" delay={0.2}>
+            <motion.a
+              href="#"
+              whileHover={{ scale: 0.995 }}
+              transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+              className="block group relative"
+            >
+              <div className="aspect-[21/9] overflow-hidden">
+                <img
+                  src={IMAGES.packaging}
+                  alt="Premium Packaging"
+                  className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-[1.2s] ease-out"
+                />
+              </div>
+              <div className="mt-5 flex items-start justify-between">
+                <div>
+                  <h3
+                    className="text-2xl mb-1"
+                    style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, color: "#2d1a2d" }}
+                  >
+                    Gift Collections
+                  </h3>
+                  <p className="text-[13px] text-[#8b6f6f]">Thoughtfully wrapped, ready to delight</p>
+                </div>
+                <ArrowUpRight
+                  size={18}
+                  className="text-[#8b6f6f] group-hover:text-[#4a2040] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-500 mt-1"
+                />
+              </div>
+            </motion.a>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* Marquee */}
+      <section className="py-8 border-y border-[#e8e0d8] overflow-hidden bg-[#faf8f5]">
+        <motion.div
+          animate={{ x: [0, -1200] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="flex gap-16 whitespace-nowrap"
+        >
+          {Array(12).fill(null).map((_, i) => (
+            <span
+              key={i}
+              className="text-[clamp(1.2rem,3vw,2rem)] tracking-wide"
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#c9b8b0" }}
+            >
+              Handmade &nbsp;&middot;&nbsp; Kashmir &nbsp;&middot;&nbsp; Pearls &nbsp;&middot;&nbsp; Petals &nbsp;&middot;&nbsp; Elegance &nbsp;&middot;&nbsp;
+            </span>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* Story Section - Asymmetric */}
+      <section id="story" className="py-28 md:py-44 px-6 md:px-10 bg-[#faf8f5]">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
+            <RevealSection className="md:col-span-5 md:col-start-1">
+              <p className="text-[11px] tracking-[0.25em] uppercase text-[#8b6f6f] mb-4">
+                Our Story
+              </p>
+              <h2
+                className="text-[clamp(2rem,4vw,3.5rem)] leading-[1.15] mb-8"
+                style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#2d1a2d" }}
+              >
+                Crafted with patience,
+                <br />
+                <em>worn with pride</em>
+              </h2>
+              <p className="text-[15px] leading-[1.8] text-[#6b5a5a] mb-6">
+                From the valleys of Kashmir, each Poshsaaz creation is born from hours
+                of careful handwork — pipe cleaners twisted into delicate florals,
+                pearls placed one by one, colors chosen to complement every occasion.
+              </p>
+              <p className="text-[15px] leading-[1.8] text-[#6b5a5a]">
+                We don't just make accessories. We craft keepsakes — pieces that carry
+                the warmth of hands that made them.
+              </p>
+            </RevealSection>
+
+            <RevealSection className="md:col-span-6 md:col-start-7" delay={0.2}>
+              <div className="relative">
+                <div className="aspect-[3/4] overflow-hidden">
+                  <img
+                    src={IMAGES.details}
+                    alt="Craftsmanship details"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                {/* Small accent image */}
+                <div className="absolute -bottom-8 -left-8 w-32 h-32 md:w-48 md:h-48 overflow-hidden shadow-xl hidden md:block">
+                  <img
+                    src={IMAGES.bouquets}
+                    alt="Bouquet detail"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </RevealSection>
           </div>
         </div>
       </section>
 
-      {/* Collections Section */}
-      <section className="py-24 md:py-32 bg-white relative">
-        <div className="container px-4 md:px-0">
-          <div className="mb-16">
-            <h2 className="text-5xl md:text-7xl font-light text-gray-900 mb-6">
-              Our Collections
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl">
-              Discover our curated selection of handcrafted floral accessories
+      {/* Contact / CTA */}
+      <section id="contact" className="py-28 md:py-44 px-6 md:px-10 bg-[#f5f0eb]">
+        <div className="max-w-[1400px] mx-auto">
+          <RevealSection>
+            <div className="max-w-2xl">
+              <p className="text-[11px] tracking-[0.25em] uppercase text-[#8b6f6f] mb-4">
+                Custom Orders
+              </p>
+              <h2
+                className="text-[clamp(2rem,5vw,4rem)] leading-[1.1] mb-8"
+                style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#2d1a2d" }}
+              >
+                Let us create something
+                <br />
+                <em>just for you</em>
+              </h2>
+              <p className="text-[15px] leading-[1.8] text-[#6b5a5a] mb-10 max-w-lg">
+                Every piece can be tailored — choose your colors, your flowers,
+                your occasion. We'd love to hear your vision.
+              </p>
+              <a
+                href="mailto:hashimdar141@gmail.com"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#4a2040] text-[#faf8f5] text-[12px] tracking-[0.15em] uppercase hover:bg-[#3a1530] transition-colors duration-500 group"
+              >
+                Get in Touch
+                <ArrowUpRight
+                  size={14}
+                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                />
+              </a>
+            </div>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-16 px-6 md:px-10 border-t border-[#e8e0d8] bg-[#faf8f5]">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <div>
+              <span
+                className="text-xl block mb-2"
+                style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500, color: "#4a2040" }}
+              >
+                Poshsaaz
+              </span>
+              <p className="text-[12px] text-[#8b6f6f]">Handmade with love, from Kashmir</p>
+            </div>
+            <div className="flex items-center gap-8">
+              {["Instagram", "Facebook"].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  className="text-[12px] tracking-[0.06em] uppercase text-[#8b6f6f] hover:text-[#4a2040] transition-colors duration-300"
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+            <p className="text-[11px] text-[#b0a0a0]">
+              &copy; 2024 Poshsaaz. Kashmir, India.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                onClick={() => setSelectedProduct(product.id)}
-                className="group cursor-pointer transform transition-all duration-500 hover:-translate-y-2"
-              >
-                <div className="relative w-full aspect-square rounded-3xl overflow-hidden mb-6 bg-gradient-to-br from-pink-100 to-amber-100 shadow-lg hover:shadow-2xl transition-all duration-500">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-rose-600 transition-colors">
-                  {product.title}
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {product.description}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
-      </section>
-
-      {/* About Section */}
-      <section className="py-24 md:py-32 bg-gradient-to-r from-pink-50 to-amber-50">
-        <div className="container px-4 md:px-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-            <div>
-              <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-8">
-                Handmade with <span className="font-bold text-rose-600">Love</span>
-              </h2>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Each piece in our collection is carefully handcrafted by artisans in Kashmir, using traditional techniques passed down through generations.
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                We believe in creating timeless pieces that celebrate the beauty of handmade craftsmanship and the rich heritage of Kashmir.
-              </p>
-            </div>
-            <div className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src="/manus-storage/collection_packaging_light.png"
-                alt="Handmade Process"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-24 md:py-32 bg-white">
-        <div className="container px-4 md:px-0">
-          <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-16">
-            Why Choose <span className="font-bold text-rose-600">Poshsaaz</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Artisan Crafted",
-                description:
-                  "Each piece is handmade by skilled artisans using traditional techniques",
-                icon: "✨",
-              },
-              {
-                title: "Premium Quality",
-                description:
-                  "We use only the finest materials to ensure lasting beauty",
-                icon: "💎",
-              },
-              {
-                title: "Sustainable",
-                description:
-                  "Eco-friendly practices in every step of our creation process",
-                icon: "🌿",
-              },
-            ].map((feature, idx) => (
-              <div
-                key={idx}
-                className="p-8 md:p-10 border-2 border-rose-200 rounded-2xl hover:border-rose-600 hover:shadow-xl transition-all duration-500 group cursor-pointer bg-gradient-to-br from-white to-pink-50/50"
-              >
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-gradient-to-r from-rose-600 to-pink-600 text-white relative overflow-hidden">
-        {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -mr-48 -mt-48" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-3xl -ml-36 -mb-36" />
-
-        <div className="container px-4 md:px-0 text-center relative z-10">
-          <h2 className="text-5xl md:text-7xl font-light mb-8">
-            Ready to <span className="font-bold">Bloom</span>?
-          </h2>
-          <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-            Explore our full collection and find the perfect piece for any occasion
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="px-10 py-4 bg-white text-rose-600 font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg">
-              Shop Now
-            </button>
-            <button className="px-10 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-rose-600 transition-all duration-300 transform hover:scale-105 active:scale-95">
-              Contact Us
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-      <ProductModal
-        productId={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-      />
+      </footer>
     </div>
   );
 }
