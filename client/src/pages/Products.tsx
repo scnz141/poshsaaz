@@ -8,6 +8,8 @@ const PRODUCT_DATA = [
     id: "hairband-pink",
     title: "Rose Bloom Hairband",
     category: "Hairbands",
+    badge: "Made to Order",
+    price: "Starting ₹499",
     images: [
       "/manus-storage/collection_hairbands_light_4f1cedc3.png",
       "/manus-storage/hairband_pink_closeup_475d4b3b.png",
@@ -19,6 +21,8 @@ const PRODUCT_DATA = [
     id: "hairband-purple",
     title: "Lavender Dreams Hairband",
     category: "Hairbands",
+    badge: "Made to Order",
+    price: "Starting ₹549",
     images: [
       "/manus-storage/hairband_purple_variant_fbdaaa19.png",
       "/manus-storage/hairband_pink_closeup_475d4b3b.png",
@@ -30,6 +34,8 @@ const PRODUCT_DATA = [
     id: "bouquet-tulips",
     title: "Tulip Garden Bouquet",
     category: "Bouquets",
+    badge: "Custom Order",
+    price: "Starting ₹799",
     images: [
       "/manus-storage/collection_bouquets_light_d773206d.png",
       "/manus-storage/bouquet_tulips_closeup_2fc0869f.png",
@@ -41,6 +47,8 @@ const PRODUCT_DATA = [
     id: "bouquet-mixed",
     title: "Mixed Floral Bouquet",
     category: "Bouquets",
+    badge: "Custom Order",
+    price: "Starting ₹899",
     images: [
       "/manus-storage/bouquet_tulips_closeup_2fc0869f.png",
       "/manus-storage/collection_bouquets_light_d773206d.png",
@@ -52,6 +60,8 @@ const PRODUCT_DATA = [
     id: "clips-set",
     title: "Floral Clips Collection",
     category: "Clips & Combs",
+    badge: "Made to Order",
+    price: "Starting ₹349",
     images: [
       "/manus-storage/clips_collection_717da568.png",
       "/manus-storage/collection_details_light_2767e0bf.png",
@@ -63,6 +73,8 @@ const PRODUCT_DATA = [
     id: "clips-comb",
     title: "Pearl Blossom Comb",
     category: "Clips & Combs",
+    badge: "Made to Order",
+    price: "Starting ₹399",
     images: [
       "/manus-storage/collection_details_light_2767e0bf.png",
       "/manus-storage/clips_collection_717da568.png",
@@ -74,6 +86,8 @@ const PRODUCT_DATA = [
     id: "gift-premium",
     title: "Premium Gift Box",
     category: "Gift Sets",
+    badge: "Custom Order",
+    price: "Starting ₹1,299",
     images: [
       "/manus-storage/gift_box_open_6a80094d.png",
       "/manus-storage/collection_packaging_light_3077cd31.png",
@@ -85,6 +99,8 @@ const PRODUCT_DATA = [
     id: "gift-bridal",
     title: "Bridal Collection Box",
     category: "Gift Sets",
+    badge: "Custom Order",
+    price: "Starting ₹1,599",
     images: [
       "/manus-storage/collection_packaging_light_3077cd31.png",
       "/manus-storage/gift_box_open_6a80094d.png",
@@ -338,6 +354,10 @@ export default function Products() {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+                    <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+                      <span className="px-2.5 py-1 bg-[#4a2040] text-[#faf8f5] text-[9px] tracking-[0.12em] uppercase">{product.badge}</span>
+                      <span className="px-2.5 py-1 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.06em]">{product.price}</span>
+                    </div>
                     <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
                       <span className="inline-block px-4 py-2 bg-white/95 backdrop-blur-sm text-[11px] tracking-[0.1em] uppercase text-[#4a2040]">
                         View Details

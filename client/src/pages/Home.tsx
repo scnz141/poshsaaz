@@ -17,6 +17,8 @@ const COLLECTIONS = [
     description: "Handcrafted pipe cleaner hairbands adorned with delicate pearls and intricate floral designs. Each piece is carefully shaped and assembled to create a unique, lightweight accessory perfect for everyday elegance or special occasions.",
     image: IMAGES.hairbands,
     features: ["Lightweight & comfortable", "Pearl embellishments", "Available in multiple colors"],
+    badge: "Made to Order",
+    price: "Starting ₹499",
   },
   {
     id: "bouquets",
@@ -24,6 +26,8 @@ const COLLECTIONS = [
     description: "Everlasting floral bouquets crafted from pipe cleaners — blooms that never wilt. Perfect as home decor, thoughtful gifts, or wedding accessories that preserve the beauty of flowers forever.",
     image: IMAGES.bouquets,
     features: ["Never wilts", "Custom color combinations", "Perfect for gifting"],
+    badge: "Custom Order",
+    price: "Starting ₹799",
   },
   {
     id: "clips",
@@ -31,6 +35,8 @@ const COLLECTIONS = [
     description: "Delicate hair clips and decorative combs featuring miniature floral arrangements. Gold-toned hardware paired with soft pastel petals creates accessories that add a touch of handmade charm to any hairstyle.",
     image: IMAGES.details,
     features: ["Secure gold-tone clips", "Miniature floral details", "Versatile styling"],
+    badge: "Made to Order",
+    price: "Starting ₹349",
   },
   {
     id: "gifts",
@@ -38,6 +44,8 @@ const COLLECTIONS = [
     description: "Beautifully curated gift sets presented in elegant packaging. Each collection combines our finest pieces — hairbands, clips, and bouquets — into thoughtful arrangements ready to delight on any occasion.",
     image: IMAGES.packaging,
     features: ["Premium packaging", "Curated combinations", "Ready to gift"],
+    badge: "Custom Order",
+    price: "Starting ₹1,299",
   },
 ];
 
@@ -366,6 +374,10 @@ export default function Home() {
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
                     <ZoomIn size={28} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
+                  <div className="absolute top-4 left-4 flex flex-col gap-2">
+                    <span className="px-3 py-1.5 bg-[#4a2040] text-[#faf8f5] text-[10px] tracking-[0.12em] uppercase">Made to Order</span>
+                    <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em]">Starting ₹499</span>
+                  </div>
                 </div>
                 <div className="mt-5 flex items-start justify-between">
                   <div>
@@ -397,6 +409,10 @@ export default function Home() {
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
                       <ZoomIn size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
+                    <div className="absolute top-4 left-4 flex flex-col gap-2">
+                      <span className="px-3 py-1.5 bg-[#4a2040] text-[#faf8f5] text-[10px] tracking-[0.12em] uppercase">Custom Order</span>
+                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em]">Starting ₹799</span>
+                    </div>
                   </div>
                   <div className="mt-5 flex items-start justify-between">
                     <div>
@@ -425,6 +441,10 @@ export default function Home() {
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
                       <ZoomIn size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </div>
+                    <div className="absolute top-4 left-4 flex flex-col gap-2">
+                      <span className="px-3 py-1.5 bg-[#4a2040] text-[#faf8f5] text-[10px] tracking-[0.12em] uppercase">Made to Order</span>
+                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em]">Starting ₹349</span>
                     </div>
                   </div>
                   <div className="mt-5 flex items-start justify-between">
@@ -457,6 +477,10 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
                   <ZoomIn size={28} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+                <div className="absolute top-4 left-4 flex flex-col gap-2">
+                  <span className="px-3 py-1.5 bg-[#4a2040] text-[#faf8f5] text-[10px] tracking-[0.12em] uppercase">Custom Order</span>
+                  <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em]">Starting ₹1,299</span>
                 </div>
               </div>
               <div className="mt-5 flex items-start justify-between">
