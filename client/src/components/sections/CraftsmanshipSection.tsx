@@ -62,7 +62,7 @@ export default function CraftsmanshipSection() {
 
           <div ref={imageRef} className="relative">
             <div className="absolute -inset-6 bg-gradient-to-br from-brand-plum/20 to-brand-sage/20 rounded-3xl blur-2xl" />
-            <img src="/manus-storage/kashmir_craft_e70e86c6.png" alt="Handcrafting process" className="relative w-full h-auto rounded-3xl shadow-2xl tilt-card" />
+            <img src="https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754105/poshsaaz/craftsmanship.jpg" alt="Handcrafting process" className="relative w-full h-auto rounded-3xl shadow-2xl tilt-card" />
           </div>
         </div>
       </div>

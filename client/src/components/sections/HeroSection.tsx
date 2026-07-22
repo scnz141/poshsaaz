@@ -50,7 +50,7 @@ export default function HeroSection() {
           <div className="hero-animate flex items-center justify-center">
             <div className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
               <img
-                src="/manus-storage/hero_light_premium_d4e2f1a9.png"
+                src="https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754099/poshsaaz/hero.jpg"
                 alt="Poshsaaz Handmade Floral Accessories"
                 className="w-full h-full object-cover"
               />
