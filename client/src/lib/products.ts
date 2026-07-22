@@ -6,7 +6,7 @@ export const products = [
     image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754115/poshsaaz/rose_bloom_hairband.jpg",
     description: "Handcrafted pipe cleaner floral hairband with vibrant pink rosettes and pearl accents.",
     details: "Each hairband is meticulously shaped from fuzzy chenille stem wire with delicate pearl embellishments. Perfect for weddings, events, or everyday elegance.",
-    price: "Starting ₹499",
+    price: "Starting ₹249",
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const products = [
     image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754140/poshsaaz/tulip_garden_bouquet.jpg",
     description: "Stunning everlasting tulip bouquet crafted from handmade pipe cleaner blooms.",
     details: "Our signature everlasting bouquets combine traditional Kashmir craftsmanship with contemporary floral art. Wrapped in kraft paper with satin ribbon.",
-    price: "Starting ₹799",
+    price: "Starting ₹399",
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const products = [
     image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754165/poshsaaz/floral_clips_collection.jpg",
     description: "Fine floral clips with miniature pipe cleaner flowers and pearl centers.",
     details: "Precision-crafted miniature chenille floral clips with gold-tone hardware. Ideal for bridal wear and everyday styling.",
-    price: "Starting ₹349",
+    price: "Starting ₹149",
   },
   {
     id: 4,
@@ -33,7 +33,16 @@ export const products = [
     image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754182/poshsaaz/pearl_blossom_comb.jpg",
     description: "Decorative hair comb with cascading handmade blossoms and pearls.",
     details: "Golden hair comb featuring handmade white and pink chenille wire flowers, golden leaves, and pearl accents.",
-    price: "Starting ₹399",
+    price: "Starting ₹199",
+  },
+  {
+    id: 5,
+    title: "Floral Curtain Tieback",
+    category: "Home Decor",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784756852/poshsaaz/curtain_tieback.jpg",
+    description: "Handmade chenille floral curtain holdback with pink and purple blooms, pearl drops, and gold rope.",
+    details: "Magnetic curtain tieback featuring handcrafted pipe cleaner flowers in pink and lavender with gold leaf accents and dangling pearl embellishments. Adds an elegant handmade touch to any curtain.",
+    price: "Starting ₹299",
   },
 ];
 

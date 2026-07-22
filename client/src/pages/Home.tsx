@@ -3,11 +3,11 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from "fra
 import { Menu, X, ArrowDown, ArrowUpRight, MessageCircle, ZoomIn } from "lucide-react";
 
 const IMAGES = {
-  hero: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754099/poshsaaz/hero.jpg",
-  hairbands: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754115/poshsaaz/rose_bloom_hairband.jpg",
+  hero: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784756395/poshsaaz/hero_clips_marble.jpg",
+  hairbands: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754099/poshsaaz/hero.jpg",
   bouquets: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754140/poshsaaz/tulip_garden_bouquet.jpg",
   details: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754165/poshsaaz/floral_clips_collection.jpg",
-  packaging: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754182/poshsaaz/pearl_blossom_comb.jpg",
+  packaging: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754155/poshsaaz/mixed_floral_bouquet.jpg",
 };
 
 const COLLECTIONS = [
@@ -266,7 +266,7 @@ export default function Home() {
             alt="Poshsaaz handcrafted floral accessories"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#faf8f5] via-[#faf8f5]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#faf8f5]/70 via-transparent to-transparent" />
         </motion.div>
 
         <motion.div
