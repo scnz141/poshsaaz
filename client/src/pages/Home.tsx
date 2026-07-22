@@ -646,14 +646,6 @@ export default function Home() {
                 Instagram
               </a>
               <a
-                href="https://www.facebook.com/poshsaaz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[12px] tracking-[0.06em] uppercase text-[#8b6f6f] hover:text-[#4a2040] transition-colors duration-300"
-              >
-                Facebook
-              </a>
-              <a
                 href="https://wa.me/918082757627"
                 target="_blank"
                 rel="noopener noreferrer"
