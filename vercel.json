@@ -1,0 +1,9 @@
+{
+  "buildCommand": "pnpm run build",
+  "outputDirectory": "dist/public",
+  "framework": "vite",
+  "regions": ["iad1"],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
