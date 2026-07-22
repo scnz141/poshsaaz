@@ -221,7 +221,7 @@ function ProductLightbox({ product, onClose }: { product: typeof PRODUCT_DATA[0]
 
             <div className="space-y-3">
               <a
-                href={`https://wa.me/917006862517?text=Hi! I'm interested in the ${product.title}. Can you share more details?`}
+                href={`https://wa.me/918082757627?text=Hi! I'm interested in the ${product.title}. Can you share more details?`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-3 py-4 bg-[#4a2040] text-[#faf8f5] text-[12px] tracking-[0.15em] uppercase hover:bg-[#3a1530] transition-colors duration-500"

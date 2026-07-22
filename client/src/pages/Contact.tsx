@@ -117,12 +117,12 @@ export default function Contact() {
                   <div>
                     <p className="text-[13px] font-medium text-[#2d1a2d] mb-1">WhatsApp</p>
                     <a
-                      href="https://wa.me/917006862517"
+                      href="https://wa.me/918082757627"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[13px] text-[#8b6f6f] hover:text-[#4a2040] transition-colors"
                     >
-                      +91 7006 862 517
+                      +91 80827 57627
                     </a>
                   </div>
                 </div>

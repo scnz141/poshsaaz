@@ -608,6 +608,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Floating WhatsApp Button */}
+      <motion.a
+        href="https://wa.me/918082757627"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-[#25d366] flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <MessageCircle size={24} className="text-white" />
+      </motion.a>
+
       {/* Footer */}
       <footer className="py-16 px-6 md:px-10 border-t border-[#e8e0d8] bg-[#faf8f5]">
         <div className="max-w-[1400px] mx-auto">
@@ -639,7 +654,7 @@ export default function Home() {
                 Facebook
               </a>
               <a
-                href="https://wa.me/917006862517"
+                href="https://wa.me/918082757627"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[12px] tracking-[0.06em] uppercase text-[#8b6f6f] hover:text-[#4a2040] transition-colors duration-300"
