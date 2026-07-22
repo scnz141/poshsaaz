@@ -120,3 +120,5 @@ scripts/cloudinary_urls.json
 
 # Sanitization backups
 .sanitization_backups/
+.vercel
+.env*.local
