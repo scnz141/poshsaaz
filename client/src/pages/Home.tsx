@@ -3,11 +3,11 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from "fra
 import { Menu, X, ArrowDown, ArrowUpRight, MessageCircle, ZoomIn } from "lucide-react";
 
 const IMAGES = {
-  hero: "/manus-storage/hero_light_premium_d33a0c7c.png",
-  hairbands: "/manus-storage/collection_hairbands_light_31603e88.png",
-  bouquets: "/manus-storage/collection_bouquets_light_ad8bf3d2.png",
-  details: "/manus-storage/collection_details_light_be988605.png",
-  packaging: "/manus-storage/collection_packaging_light_25697918.png",
+  hero: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=1200&h=800&fit=crop",
+  hairbands: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1200&h=1200&fit=crop",
+  bouquets: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=1200&h=1200&fit=crop",
+  details: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1200&h=1200&fit=crop",
+  packaging: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&h=1200&fit=crop",
 };
 
 const COLLECTIONS = [
