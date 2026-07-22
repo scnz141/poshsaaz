@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const CLOUD_NAME = 'dtcy9bbux';
-const API_KEY = '568966983365632';
-const API_SECRET = 'qCakHchZyElPOgA7oFBWa3nV4FU';
+const CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME || 'dtcy9bbux';
+const API_KEY = process.env.CLOUDINARY_API_KEY || '';
+const API_SECRET = process.env.CLOUDINARY_API_SECRET || '';
 
 const filePath = '/Users/fin./.gemini/antigravity-ide/brain/29f1a8df-df19-462d-b6ba-c9fa66f6800a/media__1784756740112.jpg';
 const publicId = 'poshsaaz/curtain_tieback';
