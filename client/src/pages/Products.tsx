@@ -1,108 +1,11 @@
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ArrowLeft, X, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
+import { ArrowLeft, X, ChevronLeft, ChevronRight, MessageCircle, Instagram } from "lucide-react";
 import { Link } from "wouter";
+import { products as PRODUCT_DATA, Product } from "@/lib/products";
 
-const PRODUCT_DATA = [
-  {
-    id: "hairband-rose",
-    title: "Rose Bloom Hairband",
-    category: "Hairbands",
-    badge: "Made to Order",
-    price: "Starting ₹499",
-    images: [
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754115/poshsaaz/rose_bloom_hairband.jpg",
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754099/poshsaaz/hero.jpg",
-    ],
-    description: "Vibrant pink floral rosettes crafted from pipe cleaner stems with pearl accents on a velvet band. Lightweight and comfortable.",
-  },
-  {
-    id: "hairband-lavender",
-    title: "Lavender Dreams Hairband",
-    category: "Hairbands",
-    badge: "Made to Order",
-    price: "Starting ₹549",
-    images: [
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754123/poshsaaz/lavender_dreams_hairband.jpg",
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754099/poshsaaz/hero.jpg",
-    ],
-    description: "Soft lavender purple florals made of fuzzy chenille wire with delicate pearl centers. A dreamy accessory for weddings.",
-  },
-  {
-    id: "bouquet-tulips",
-    title: "Tulip Garden Bouquet",
-    category: "Bouquets",
-    badge: "Custom Order",
-    price: "Starting ₹799",
-    images: [
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754140/poshsaaz/tulip_garden_bouquet.jpg",
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754105/poshsaaz/craftsmanship.jpg",
-    ],
-    description: "Everlasting tulip bouquet in pink, lavender, and white made from hand-twisted chenille stems. Wrapped in kraft paper with ribbon.",
-  },
-  {
-    id: "bouquet-mixed",
-    title: "Mixed Floral Bouquet",
-    category: "Bouquets",
-    badge: "Custom Order",
-    price: "Starting ₹899",
-    images: [
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754155/poshsaaz/mixed_floral_bouquet.jpg",
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754140/poshsaaz/tulip_garden_bouquet.jpg",
-    ],
-    description: "A curated mix of handcrafted chenille wire flowers in warm pastels. Perfect as everlasting home decor or a thoughtful gift.",
-  },
-  {
-    id: "clips-set",
-    title: "Floral Clips Collection",
-    category: "Clips & Combs",
-    badge: "Made to Order",
-    price: "Starting ₹349",
-    images: [
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754165/poshsaaz/floral_clips_collection.jpg",
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754182/poshsaaz/pearl_blossom_comb.jpg",
-    ],
-    description: "Set of delicate hair clips with miniature chenille floral arrangements. Gold-tone hardware with pastel petals and pearl centers.",
-  },
-  {
-    id: "clips-comb",
-    title: "Pearl Blossom Comb",
-    category: "Clips & Combs",
-    badge: "Made to Order",
-    price: "Starting ₹399",
-    images: [
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754182/poshsaaz/pearl_blossom_comb.jpg",
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754165/poshsaaz/floral_clips_collection.jpg",
-    ],
-    description: "Decorative hair comb with cascading floral design. Gold leaves and pearl accents create timeless bridal elegance.",
-  },
-  {
-    id: "gift-premium",
-    title: "Premium Gift Box",
-    category: "Gift Sets",
-    badge: "Custom Order",
-    price: "Starting ₹1,299",
-    images: [
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754099/poshsaaz/hero.jpg",
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754115/poshsaaz/rose_bloom_hairband.jpg",
-    ],
-    description: "Curated gift set with hairband, clips, and mini bouquet in elegant packaging. Ready to delight on any occasion.",
-  },
-  {
-    id: "gift-bridal",
-    title: "Bridal Collection Box",
-    category: "Gift Sets",
-    badge: "Custom Order",
-    price: "Starting ₹1,599",
-    images: [
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754105/poshsaaz/craftsmanship.jpg",
-      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754182/poshsaaz/pearl_blossom_comb.jpg",
-    ],
-    description: "Complete bridal accessory set — tiara hairband, decorative combs, and matching clips. Custom colors available.",
-  },
-];
+const CATEGORIES = ["All", "Bouquets", "Bookmarks", "Charger Covers", "Mobile Covers", "Keychains", "Wall Décor", "Hairbands", "Clips & Combs"];
 
-const CATEGORIES = ["All", "Hairbands", "Bouquets", "Clips & Combs", "Gift Sets"];
 
 function RevealSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);
@@ -221,6 +124,17 @@ function ProductLightbox({ product, onClose }: { product: typeof PRODUCT_DATA[0]
                 <MessageCircle size={16} />
                 Inquire on WhatsApp
               </a>
+              {product.instagramUrl && (
+                <a
+                  href={product.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-3 py-4 bg-[#e1306c] text-white text-[12px] tracking-[0.15em] uppercase hover:bg-[#c1285d] transition-colors duration-500"
+                >
+                  <Instagram size={16} />
+                  View Reel on Instagram
+                </a>
+              )}
               <a
                 href="mailto:hashimdar141@gmail.com"
                 className="w-full flex items-center justify-center gap-3 py-4 border border-[#4a2040] text-[#4a2040] text-[12px] tracking-[0.15em] uppercase hover:bg-[#4a2040] hover:text-[#faf8f5] transition-all duration-500"

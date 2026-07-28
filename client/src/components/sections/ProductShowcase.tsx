@@ -33,10 +33,14 @@ export default function ProductShowcase() {
   }, []);
 
   const products = [
+    { title: "Everlasting Bouquets", desc: "Lavender, sunflowers, roses & single stems that never wilt", icon: "💐", color: "from-brand-lavender" },
+    { title: "Handmade Bookmarks", desc: "Floral chenille book markers with satin tassels", icon: "📖", color: "from-brand-blush" },
+    { title: "Charger Cable Covers", desc: "Spiral floral cable protectors with pearl blossoms", icon: "🔌", color: "from-brand-sage" },
+    { title: "Mobile Phone Covers", desc: "Custom cases with 3D handcrafted floral art", icon: "📱", color: "from-brand-plum" },
+    { title: "Custom Keychains", desc: "Handmade flower keyrings with gold charms", icon: "🔑", color: "from-brand-gold" },
+    { title: "Wall Décor", desc: "Wooden hoop wall hangings with woven florals", icon: "🖼️", color: "from-brand-lavender" },
     { title: "Floral Hairbands", desc: "Vibrant pipe cleaner flowers with pearl accents", icon: "🌸", color: "from-brand-blush" },
-    { title: "Bouquets", desc: "Handcrafted arrangements perfect for gifting", icon: "💐", color: "from-brand-lavender" },
-    { title: "Hair Clips", desc: "Delicate floral clips for everyday elegance", icon: "✨", color: "from-brand-sage" },
-    { title: "Custom Orders", desc: "Personalized creations for special moments", icon: "🎁", color: "from-brand-plum" },
+    { title: "Clips & Combs", desc: "Delicate floral hair clips for everyday elegance", icon: "✨", color: "from-brand-sage" },
   ];
 
   return (

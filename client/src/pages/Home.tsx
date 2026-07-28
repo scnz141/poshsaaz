@@ -1,51 +1,90 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowDown, ArrowUpRight, MessageCircle, ZoomIn } from "lucide-react";
+import { Menu, X, ArrowDown, ArrowUpRight, MessageCircle, ZoomIn, Instagram } from "lucide-react";
 
 const IMAGES = {
   hero: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784756395/poshsaaz/hero_clips_marble.jpg",
   hairbands: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754099/poshsaaz/hero.jpg",
-  bouquets: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754140/poshsaaz/tulip_garden_bouquet.jpg",
+  bouquets: "/images/lavender_bouquet.png",
+  sunflower: "/images/sunflower_bouquet.png",
+  rose: "/images/rose_bouquet.png",
+  bookmark: "/images/handmade_bookmark.png",
+  charger: "/images/charger_cover.png",
+  mobile: "/images/mobile_cover.png",
+  keychain: "/images/handmade_keychain.png",
+  wall: "/images/wall_decor.png",
   details: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754165/poshsaaz/floral_clips_collection.jpg",
   packaging: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754155/poshsaaz/mixed_floral_bouquet.jpg",
 };
 
 const COLLECTIONS = [
   {
+    id: "bouquets",
+    title: "Everlasting Bouquets",
+    description: "Everlasting floral bouquets crafted from pipe cleaners — lavender, sunflowers, roses, mixed arrangements, and single-stem blooms that never wilt. Wrapped in rustic kraft paper with ribbon.",
+    image: IMAGES.bouquets,
+    features: ["Lavender, Sunflower, Rose & Mixed options", "Never wilts", "Perfect for gifting"],
+    badge: "Custom Order",
+    price: "Starting ₹199",
+  },
+  {
+    id: "bookmarks",
+    title: "Handmade Bookmarks",
+    description: "Mark your moments with handmade beauty. Every page deserves a little bloom. Delicate pipe cleaner floral bookmarks with satin tassels.",
+    image: IMAGES.bookmark,
+    features: ["Page-safe slim design", "Satin tassel charm", "Ideal gift for book lovers"],
+    badge: "Made to Order",
+    price: "Starting ₹249",
+    instagramUrl: "https://www.instagram.com/reel/DbOTtopyZaa/",
+  },
+  {
+    id: "charger",
+    title: "Charger Cable Covers",
+    description: "Handmade with love, crafted to protect. Make your charger look as beautiful as you are. Spiral chenille floral cable covers with pearl accents.",
+    image: IMAGES.charger,
+    features: ["Protects against fraying", "Pearl blossom design", "Fits standard cables"],
+    badge: "Custom Order",
+    price: "Starting ₹399",
+    instagramUrl: "https://www.instagram.com/reel/Dapkh2mSd3Z/",
+  },
+  {
+    id: "mobile",
+    title: "Mobile Phone Covers",
+    description: "Carry your style everywhere. Handcrafted phone covers decorated with 3D pipe cleaner flowers and pearl centers designed with love.",
+    image: IMAGES.mobile,
+    features: ["Custom fitted for any phone", "Tactile 3D floral art", "Unique handcrafted design"],
+    badge: "Custom Order",
+    price: "Starting ₹599",
+    instagramUrl: "https://www.instagram.com/reel/Dah4wETy-ku/",
+  },
+  {
+    id: "keychains",
+    title: "Custom Keychains",
+    description: "Every key deserves a beautiful companion. Custom handmade flower keychains with gold hardware and pearl charms.",
+    image: IMAGES.keychain,
+    features: ["Gold metal keyring", "Lightweight & durable", "Charming bag accessory"],
+    badge: "Made to Order",
+    price: "Starting ₹199",
+    instagramUrl: "https://www.instagram.com/p/Dahs4ULSWex/",
+  },
+  {
+    id: "wall",
+    title: "Handcrafted Wall Décor",
+    description: "Artisan wall hangings featuring woven pipe cleaner florals, wooden hoop, and dangling greenery accents for bohemian elegance.",
+    image: IMAGES.wall,
+    features: ["Natural wooden hoop", "Cascading greenery & ribbons", "Aesthetic Kashmir art"],
+    badge: "Custom Order",
+    price: "Starting ₹899",
+    instagramUrl: "https://www.instagram.com/p/Dag3gc1ShDn/",
+  },
+  {
     id: "hairbands",
     title: "Floral Hairbands",
-    description: "Handcrafted pipe cleaner hairbands adorned with delicate pearls and intricate floral designs. Each piece is carefully shaped and assembled to create a unique, lightweight accessory perfect for everyday elegance or special occasions.",
+    description: "Handcrafted pipe cleaner hairbands adorned with delicate pearls and intricate floral designs. Lightweight and elegant.",
     image: IMAGES.hairbands,
     features: ["Lightweight & comfortable", "Pearl embellishments", "Available in multiple colors"],
     badge: "Made to Order",
     price: "Starting ₹499",
-  },
-  {
-    id: "bouquets",
-    title: "Artisan Bouquets",
-    description: "Everlasting floral bouquets crafted from pipe cleaners — blooms that never wilt. Perfect as home decor, thoughtful gifts, or wedding accessories that preserve the beauty of flowers forever.",
-    image: IMAGES.bouquets,
-    features: ["Never wilts", "Custom color combinations", "Perfect for gifting"],
-    badge: "Custom Order",
-    price: "Starting ₹799",
-  },
-  {
-    id: "clips",
-    title: "Hair Clips & Combs",
-    description: "Delicate hair clips and decorative combs featuring miniature floral arrangements. Gold-toned hardware paired with soft pastel petals creates accessories that add a touch of handmade charm to any hairstyle.",
-    image: IMAGES.details,
-    features: ["Secure gold-tone clips", "Miniature floral details", "Versatile styling"],
-    badge: "Made to Order",
-    price: "Starting ₹349",
-  },
-  {
-    id: "gifts",
-    title: "Gift Collections",
-    description: "Beautifully curated gift sets presented in elegant packaging. Each collection combines our finest pieces — hairbands, clips, and bouquets — into thoughtful arrangements ready to delight on any occasion.",
-    image: IMAGES.packaging,
-    features: ["Premium packaging", "Curated combinations", "Ready to gift"],
-    badge: "Custom Order",
-    price: "Starting ₹1,299",
   },
 ];
 
@@ -115,16 +154,30 @@ function ProductLightbox({ product, onClose }: { product: typeof COLLECTIONS[0] 
                 </li>
               ))}
             </ul>
-            <a
-              href="https://wa.me/917006862517?text=Hi!%20I'm%20interested%20in%20your%20handmade%20creations.%20Can%20I%20know%20more%20about%20this%20collection?"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#4a2040] text-[#faf8f5] text-[12px] tracking-[0.15em] uppercase hover:bg-[#3a1530] transition-colors duration-500 group w-fit"
-            >
-              <MessageCircle size={16} />
-              Inquire on WhatsApp
-              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-            </a>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://wa.me/917006862517?text=Hi!%20I'm%20interested%20in%20your%20handmade%20creations.%20Can%20I%20know%20more%20about%20this%20collection?"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#4a2040] text-[#faf8f5] text-[12px] tracking-[0.15em] uppercase hover:bg-[#3a1530] transition-colors duration-500 group w-fit"
+              >
+                <MessageCircle size={16} />
+                Inquire on WhatsApp
+                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+              </a>
+              {product.instagramUrl && (
+                <a
+                  href={product.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#e1306c] text-white text-[12px] tracking-[0.15em] uppercase hover:bg-[#c1285d] transition-colors duration-500 group w-fit"
+                >
+                  <Instagram size={16} />
+                  View Reel on Instagram
+                  <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </motion.div>
