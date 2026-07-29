@@ -451,6 +451,54 @@ export const products: Product[] = [
     features: ["Set of 2 clips", "Miniature roses", "Gold-tone hardware"]
   },
   {
+    id: "mobile-cover-8-collection",
+    title: "Custom 8-Design Chenille Phone Case Collection",
+    category: "Mobile Covers",
+    badge: "New Arrival",
+    price: "Starting ₹599",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/f_auto,q_auto/v1785335554/poshsaaz/mobile_covers_collection_8.jpg",
+    images: ["https://res.cloudinary.com/dtcy9bbux/image/upload/f_auto,q_auto/v1785335554/poshsaaz/mobile_covers_collection_8.jpg"],
+    description: "Choose from 8 distinct handcrafted pipe cleaner designs: Blue Tulips with Bow, White Daisy, Cherry Bow, Pink Lilies, Purple Jasmine, and Mint Green Bows.",
+    details: "Available for all iPhone, Samsung, and Android phone models. Custom hand-twisted fuzzy chenille embroidery.",
+    instagramUrl: "https://www.instagram.com/reel/Dah4wETy-ku/",
+    features: ["8 unique floral styles", "3D pipe cleaner embroidery", "Soft protective texture"]
+  },
+
+  // WALL DECOR
+  {
+    id: "curtain-tieback-purple",
+    title: "Handcrafted Floral Curtain Tie-Backs",
+    category: "Wall Décor",
+    badge: "Best Seller",
+    price: "Starting ₹699",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/f_auto,q_auto/v1785335556/poshsaaz/curtain_tieback_single.png",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/f_auto,q_auto/v1785335556/poshsaaz/curtain_tieback_single.png",
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/f_auto,q_auto/v1785335557/poshsaaz/curtain_tieback_pair.jpg",
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/f_auto,q_auto/v1785335565/poshsaaz/curtain_tieback_interior.png"
+    ],
+    description: "Elegant purple chenille stem floral curtain tie-backs with hanging pom-poms and pearl centers.",
+    details: "Adds luxurious Kashmiri artisan charm to curtains, drapes, and living room interiors.",
+    features: ["3D Purple chenille blossom", "Pearl center accent", "Hanging pom-pom tassels"]
+  },
+
+  // HAIRBANDS
+  {
+    id: "hairband-purple-rose-set",
+    title: "Purple Velvet Rose Hairband & Clips Set",
+    category: "Hairbands",
+    badge: "Combo Set",
+    price: "Starting ₹649",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/f_auto,q_auto/v1785335559/poshsaaz/purple_headband_clips_set.jpg",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/f_auto,q_auto/v1785335559/poshsaaz/purple_headband_clips_set.jpg",
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/f_auto,q_auto/v1785335561/poshsaaz/purple_headband_clips_real.jpg"
+    ],
+    description: "Matching set containing a soft purple velvet chenille headband with miniature roses, plus a pair of gold alligator hair pins with rose rosettes.",
+    details: "Beautifully crafted set for girls and women. Includes 1 headband + 2 hair clips.",
+    features: ["Matching 3-piece hair set", "Velvet chenille wrap", "Pink pearl drop centers"]
+  },
+  {
     id: "comb-lavender",
     title: "Lavender Blossom Hair Comb",
     category: "Clips & Combs",

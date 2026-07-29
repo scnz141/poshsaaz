@@ -42,6 +42,12 @@ const uploads = [
   { file: 'rose_bouquet.png', public_id: 'poshsaaz/rose_bouquet' },
   { file: 'single_stem_flower.png', public_id: 'poshsaaz/single_stem_flower' },
   { file: 'wall_decor.png', public_id: 'poshsaaz/wall_decor' },
+  { file: 'mobile_covers_collection_8.jpg', public_id: 'poshsaaz/mobile_covers_collection_8' },
+  { file: 'curtain_tieback_single.png', public_id: 'poshsaaz/curtain_tieback_single' },
+  { file: 'curtain_tieback_pair.jpg', public_id: 'poshsaaz/curtain_tieback_pair' },
+  { file: 'purple_headband_clips_set.png', public_id: 'poshsaaz/purple_headband_clips_set' },
+  { file: 'purple_headband_clips_real.jpg', public_id: 'poshsaaz/purple_headband_clips_real' },
+  { file: 'curtain_tieback_interior.png', public_id: 'poshsaaz/curtain_tieback_interior' },
 ];
 
 function uploadToCloudinary(filePath, publicId) {
