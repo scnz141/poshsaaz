@@ -3,7 +3,7 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { products } from "@/lib/products";
 
 interface ProductModalProps {
-  productId: number | null;
+  productId: string | null;
   onClose: () => void;
 }
 

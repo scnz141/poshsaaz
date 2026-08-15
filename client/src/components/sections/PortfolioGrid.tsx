@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { products } from "@/lib/products";
 
 interface PortfolioGridProps {
-  onProductClick?: (id: number) => void;
+  onProductClick?: (id: string) => void;
 }
 
 export default function PortfolioGrid({ onProductClick }: PortfolioGridProps) {

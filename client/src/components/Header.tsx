@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 interface HeaderProps {
-  onProductClick?: (id: number) => void;
+  onProductClick?: (id: string) => void;
 }
 
 export default function Header({ onProductClick }: HeaderProps) {
