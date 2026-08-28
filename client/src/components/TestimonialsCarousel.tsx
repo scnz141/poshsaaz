@@ -65,7 +65,7 @@ export default function TestimonialsCarousel() {
 
             {/* Navigation */}
             <div className="flex justify-center gap-2">
-              {testimonials.map((_, idx) => (
+              {testimonials.map((_t, idx: number) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}

@@ -249,18 +249,20 @@ export default function Contact() {
                           onChange={(e) => setForm({ ...form, itemType: e.target.value })}
                           className="w-full px-4 py-3 bg-[#faf8f5] border border-[#e8e0d8] text-[14px] text-[#2d1a2d] focus:outline-none focus:border-[#4a2040] transition-colors"
                         >
-                          <option value="Money / Currency Bouquet (₹1,500)">Currency Origami Bouquet (₹1,500)</option>
-                          <option value="Handmade Earrings (₹150)">Handmade Velvet Earrings (₹150)</option>
-                          <option value="Curtain Tiebacks">Curtain Tiebacks</option>
-                          <option value="Floral Hairbands">Floral Hairbands</option>
-                          <option value="Everlasting Bouquets">Everlasting Bouquets</option>
-                          <option value="3D Mobile Phone Cover">3D Mobile Phone Cover</option>
-                          <option value="Hair Clips & Combs">Hair Clips & Combs</option>
-                          <option value="Handmade Bookmarks">Handmade Bookmarks</option>
-                          <option value="Charger Cable Covers">Charger Cable Covers</option>
-                          <option value="Custom Keychains">Custom Keychains</option>
-                          <option value="Wall Décor">Wall Décor</option>
-                          <option value="Gift Hampers">Gift Hampers</option>
+                          <option value="Curtain Tiebacks (₹200 - ₹250)">Curtain Tiebacks (₹200 – ₹250)</option>
+                          <option value="Handmade Flower Pots (₹400)">Handmade Flower Pots (₹400)</option>
+                          <option value="Car Charms / Mini Pots (₹250)">Car Charms / Mini Pots (₹250)</option>
+                          <option value="Handmade Earrings (₹150 - ₹160)">Handmade Velvet Earrings (₹150 – ₹160)</option>
+                          <option value="Hairbands & Hairpin Sets (₹150 - ₹350)">Hairbands & Hairpin Sets (₹150 – ₹350)</option>
+                          <option value="Grand Wall Hangings & Wreaths (₹850 - ₹1,000)">Wall Hangings & Wreaths (₹850 – ₹1,000)</option>
+                          <option value="Floral Hand Cuffs & Bracelets (₹200)">Floral Hand Cuffs & Bracelets (₹200)</option>
+                          <option value="Everlasting Bouquets (₹500 - ₹800)">Everlasting Bouquets (₹500 – ₹800)</option>
+                          <option value="Currency / Money Bouquet (₹1,500)">Currency Origami Bouquet (₹1,500)</option>
+                          <option value="Handmade Bookmarks (₹150)">Handmade Bookmarks (₹150)</option>
+                          <option value="Shaped Keychains (₹150 - ₹200)">Shaped Keychains & Charms (₹150 – ₹200)</option>
+                          <option value="Charger Cable Covers (₹299)">Charger Cable Covers (₹299)</option>
+                          <option value="3D Mobile Phone Cover (₹499)">3D Mobile Phone Cover (₹499)</option>
+                          <option value="Custom Gift Hampers">Custom Gift Hampers</option>
                         </select>
                       </div>
 

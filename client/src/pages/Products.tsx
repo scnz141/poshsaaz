@@ -7,7 +7,7 @@ import { products as PRODUCT_DATA, Product } from "@/lib/products";
 const PHONE_NUMBER = "+91 80827 57627";
 const WHATSAPP_LINK = "https://wa.me/918082757627";
 
-const CATEGORIES = ["All", "Money Bouquets", "Earrings", "Bouquets", "Bookmarks", "Charger Covers", "Mobile Covers", "Keychains", "Wall Décor", "Hairbands", "Clips & Combs"];
+const CATEGORIES = ["All", "Curtain Tiebacks", "Flower Pots", "Car Charms", "Earrings", "Hairbands", "Wall Décor", "Hand Cuffs", "Bouquets", "Money Bouquets", "Bookmarks", "Keychains", "Charger Covers", "Mobile Covers"];
 
 function RevealSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);
