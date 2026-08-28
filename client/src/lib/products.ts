@@ -13,7 +13,64 @@ export interface Product {
 }
 
 export const products: Product[] = [
-  // HANDMADE EARRINGS COLLECTION
+  // HANDMADE EARRINGS COLLECTION (₹150 - ₹160)
+  {
+    id: "earrings-noir-blossom-gold",
+    title: "Noir Velvet Blossom Dangles (Gold Sphere)",
+    category: "Earrings",
+    badge: "New Arrival",
+    price: "₹160",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921633/poshsaaz/earrings_black_blossom_gold_drop.png",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921633/poshsaaz/earrings_black_blossom_gold_drop.png"
+    ],
+    description: "Handcrafted 5-petal black fuzzy chenille blossom dangle earrings centered with gleaming metallic gold spheres on French wire hooks.",
+    details: "Exquisite handmade floral statement earrings. Lightweight, comfortable, and presented on luxury silk display.",
+    features: ["Plush black chenille petals", "Metallic gold core sphere", "French hook earring wires", "Ultra-lightweight statement piece"]
+  },
+  {
+    id: "earrings-lavender-frosted-blossom",
+    title: "Lavender Frosted Blossom Dangles",
+    category: "Earrings",
+    badge: "New Arrival",
+    price: "₹160",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921634/poshsaaz/earrings_purple_blossom_pearl_drop.jpg",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921634/poshsaaz/earrings_purple_blossom_pearl_drop.jpg"
+    ],
+    description: "Artisan-sculpted lavender and white variegated chenille floral dangles with polished pearl centers.",
+    details: "Two-tone frosted violet petals hand-twisted into botanical stars with luminous pearl hubs on silver fishhook wires.",
+    features: ["Variegated purple & white chenille", "Polished white pearl hub", "Silver-toned fishhook findings", "Handmade in Kashmir"]
+  },
+  {
+    id: "earrings-pastel-blue-bow-pearl",
+    title: "Baby Blue Velvet Bow-Tie Pearl Studs",
+    category: "Earrings",
+    badge: "New Arrival",
+    price: "₹160",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921636/poshsaaz/earrings_pastel_blue_bow_pearl.jpg",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921636/poshsaaz/earrings_pastel_blue_bow_pearl.jpg"
+    ],
+    description: "Soft pastel sky-blue fuzzy chenille bow-tie studs adorned with cascading lustrous round pearl beads on Poshsaaz signature card.",
+    details: "Whimsical coquette bow aesthetic created with premium chenille wire and smooth pearl drop studs.",
+    features: ["Pastel sky blue fuzzy bow", "Lustrous round pearl drop", "Signature Poshsaaz card", "Coquette vintage charm"]
+  },
+  {
+    id: "earrings-noir-crimson-ballerina-heart",
+    title: "Noir & Crimson Velvet Ballerina Heart Studs",
+    category: "Earrings",
+    badge: "New Arrival",
+    price: "₹160",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921643/poshsaaz/earrings_noir_crimson_ballerina_heart.png",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921643/poshsaaz/earrings_noir_crimson_ballerina_heart.png",
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921647/poshsaaz/earrings_noir_crimson_heart_alt.jpg"
+    ],
+    description: "Dramatic black heart top silhouette paired with rich crimson-maroon ruffled velvet skirt, creating an artistic dress / blossom shape.",
+    details: "Dual-color chenille sculpting on presentation card with delicate botanical gold accents.",
+    features: ["Dramatic noir & crimson palette", "Sculpted ballerina heart silhouette", "Soft plush texture", "Handcrafted in Kashmir"]
+  },
   {
     id: "earrings-black-heart-pearl",
     title: "Black Velvet Heart Pearl Studs",

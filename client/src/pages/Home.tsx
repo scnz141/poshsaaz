@@ -38,11 +38,11 @@ const COLLECTIONS = [
   {
     id: "earrings",
     title: "Handmade Velvet Earrings",
-    description: "Plush velvet chenille heart & button stud earrings embellished with centered pearl beads on signature Poshsaaz presentation cards.",
-    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920961/poshsaaz/earrings_black_heart_pearl.jpg",
-    features: ["Fuzzy chenille velvet texture", "Centered pearl embellishment", "Signature Poshsaaz card", "Hypoallergenic lightweight studs"],
+    description: "Plush velvet chenille botanical blossom dangles, coquette bows, and heart studs embellished with pearls and metallic gold spheres on silk presentation.",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921633/poshsaaz/earrings_black_blossom_gold_drop.png",
+    features: ["Botanical dangles & coquette bows", "Centered pearls & gold spheres", "Hypoallergenic lightweight hooks/studs", "Signature Poshsaaz presentation"],
     badge: "New Arrival",
-    price: "₹150",
+    price: "₹150 – ₹160",
   },
   {
     id: "tiebacks",
