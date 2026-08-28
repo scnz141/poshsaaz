@@ -485,6 +485,18 @@ export const products: Product[] = [
 
   // WALL DECOR
   {
+    id: "wall-decor-autumn-wreath",
+    title: "Autumn Bloom Botanical Wall Wreath",
+    category: "Wall Décor",
+    badge: "New Arrival",
+    price: "₹850",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787922120/poshsaaz/wall_decor_autumn_wreath.jpg",
+    images: ["https://res.cloudinary.com/dtcy9bbux/image/upload/v1787922120/poshsaaz/wall_decor_autumn_wreath.jpg"],
+    description: "Artisan-crafted circular wall hanging wreath adorned with chenille velvet blooms in terracotta, mocha brown, cream, and apricot tones with hanging inscribed ribbon.",
+    details: "Handmade Kashmiri floral wreath for door, living room, and bedroom aesthetics. Created with soft chenille wire petals and leaf accents.",
+    features: ["Earthy autumn floral palette", "Hanging satin loop ribbon", "Artisan sculpted leaf wings", "Everlasting home wall art"]
+  },
+  {
     id: "wall-decor-hoop",
     title: "Handcrafted Floral Wall Hoop",
     category: "Wall Décor",
