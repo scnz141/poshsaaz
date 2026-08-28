@@ -13,6 +13,80 @@ export interface Product {
 }
 
 export const products: Product[] = [
+  // HANDMADE EARRINGS COLLECTION
+  {
+    id: "earrings-black-heart-pearl",
+    title: "Black Velvet Heart Pearl Studs",
+    category: "Earrings",
+    badge: "New Arrival",
+    price: "₹150",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920961/poshsaaz/earrings_black_heart_pearl.jpg",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920961/poshsaaz/earrings_black_heart_pearl.jpg",
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920969/poshsaaz/earrings_black_heart_classic_pearl.jpg"
+    ],
+    description: "Handcrafted black fuzzy chenille velvet heart-shaped earrings embellished with a lustrous white pearl center on signature Poshsaaz presentation card.",
+    details: "Lightweight, hypoallergenic studs mounted on custom Poshsaaz signature card with 'Statement in every detail' branding.",
+    features: ["Plush black chenille velvet", "Lustrous white pearl center", "Hypoallergenic lightweight studs", "Signature Poshsaaz card"]
+  },
+  {
+    id: "earrings-pink-white-bunny-pearl",
+    title: "Blush & White Velvet Heart Studs",
+    category: "Earrings",
+    badge: "New Arrival",
+    price: "₹150",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920963/poshsaaz/earrings_pink_white_bunny_pearl.jpg",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920963/poshsaaz/earrings_pink_white_bunny_pearl.jpg"
+    ],
+    description: "Charming dual-tone white and soft blush pink fuzzy chenille velvet studs with delicate double pearl accents.",
+    details: "Artisan-sculpted soft chenille stems with double-tiered pearl beads. Perfect for pastel styling and everyday elegance.",
+    features: ["Dual-tone blush pink & white", "Double pearl embellishment", "Handmade in Kashmir", "Comfortable all-day wear"]
+  },
+  {
+    id: "earrings-peppermint-swirl-studs",
+    title: "Peppermint Swirl Fuzzy Button Studs",
+    category: "Earrings",
+    badge: "New Arrival",
+    price: "₹150",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920966/poshsaaz/earrings_peppermint_swirl_studs.png",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920966/poshsaaz/earrings_peppermint_swirl_studs.png"
+    ],
+    description: "Playful red and white spiral swirl fuzzy chenille button stud earrings with tactile plush texture.",
+    details: "Handmade circular spiral pattern twisted from red and white chenille stems, creating a festive aesthetic.",
+    features: ["Red & white swirl pattern", "Plush button stud design", "Unique handcrafted gift", "Lightweight"]
+  },
+  {
+    id: "earrings-chocolate-brown-heart",
+    title: "Chocolate Brown Velvet Heart Studs",
+    category: "Earrings",
+    badge: "New Arrival",
+    price: "₹150",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920967/poshsaaz/earrings_chocolate_brown_heart.jpg",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920967/poshsaaz/earrings_chocolate_brown_heart.jpg"
+    ],
+    description: "Warm chocolate brown fuzzy chenille velvet heart-shaped earrings on signature Poshsaaz card.",
+    details: "Minimalist plush heart design in rich earthy brown, ideal for autumn & winter wardrobe styling.",
+    features: ["Rich chocolate brown hue", "Soft velvet chenille texture", "Minimalist heart silhouette", "Signature Poshsaaz card"]
+  },
+  {
+    id: "earrings-black-heart-classic-pearl",
+    title: "Classic Noir Velvet Heart Studs",
+    category: "Earrings",
+    badge: "Best Seller",
+    price: "₹150",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920969/poshsaaz/earrings_black_heart_classic_pearl.jpg",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920969/poshsaaz/earrings_black_heart_classic_pearl.jpg",
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787920961/poshsaaz/earrings_black_heart_pearl.jpg"
+    ],
+    description: "Sculpted black chenille velvet heart stud earrings adorned with gleaming centered pearls.",
+    details: "Elegant high-contrast noir and ivory pearl combination on cream branded presentation card.",
+    features: ["Classic noir & ivory pearl", "Tactile velvety finish", "Pairs with any outfit", "Handcrafted in Kashmir"]
+  },
+
   // BOUQUETS COLLECTION
   {
     id: "bouquet-lavender",

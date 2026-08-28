@@ -249,6 +249,7 @@ export default function Contact() {
                           onChange={(e) => setForm({ ...form, itemType: e.target.value })}
                           className="w-full px-4 py-3 bg-[#faf8f5] border border-[#e8e0d8] text-[14px] text-[#2d1a2d] focus:outline-none focus:border-[#4a2040] transition-colors"
                         >
+                          <option value="Handmade Earrings (₹150)">Handmade Velvet Earrings (₹150)</option>
                           <option value="Curtain Tiebacks">Curtain Tiebacks</option>
                           <option value="Floral Hairbands">Floral Hairbands</option>
                           <option value="Everlasting Bouquets">Everlasting Bouquets</option>
