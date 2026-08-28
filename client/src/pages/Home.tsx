@@ -27,6 +27,15 @@ const IMAGES = {
 
 const COLLECTIONS = [
   {
+    id: "money-bouquets",
+    title: "Currency Origami Bouquets",
+    description: "Bespoke money bouquets with hand-folded currency note petals, plush chenille flower core, and luxury gold-bordered matte black wrapping for high-prestige celebrations.",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921259/poshsaaz/money_bouquet_purple_mandala.jpg",
+    features: ["Precision origami note petals", "Handmade chenille floral center", "Luxury gold-edge wrapping", "Custom cash denominations"],
+    badge: "Prestige Gift",
+    price: "Starting ₹1,500",
+  },
+  {
     id: "earrings",
     title: "Handmade Velvet Earrings",
     description: "Plush velvet chenille heart & button stud earrings embellished with centered pearl beads on signature Poshsaaz presentation cards.",

@@ -87,6 +87,52 @@ export const products: Product[] = [
     features: ["Classic noir & ivory pearl", "Tactile velvety finish", "Pairs with any outfit", "Handcrafted in Kashmir"]
   },
 
+  // MONEY BOUQUETS COLLECTION
+  {
+    id: "money-bouquet-white-bloom",
+    title: "Royal Currency Origami Bouquet (White Bloom)",
+    category: "Money Bouquets",
+    badge: "Luxury Bespoke",
+    price: "Starting ₹1,500",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921255/poshsaaz/money_bouquet_white_flower.jpg",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921255/poshsaaz/money_bouquet_white_flower.jpg",
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921259/poshsaaz/money_bouquet_purple_mandala.jpg"
+    ],
+    description: "Exquisite handcrafted origami currency note bouquet arranged in geometric floral petals with a plush ivory chenille center blossom and gold-trimmed matte black wrapping.",
+    details: "Custom crafted for weddings, anniversaries, graduations, and high-prestige gifting. Each banknote is folded with precision without damaging currency integrity.",
+    features: ["Origami folded currency petals", "Hand-twisted white chenille center", "Gold-bordered luxury black wrap", "Custom note denominations available"]
+  },
+  {
+    id: "money-bouquet-purple-teal",
+    title: "Bespoke Cash Gift Bouquet (Purple Blossom)",
+    category: "Money Bouquets",
+    badge: "Custom Order",
+    price: "Starting ₹1,500",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921257/poshsaaz/money_bouquet_purple_teal.jpg",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921257/poshsaaz/money_bouquet_purple_teal.jpg"
+    ],
+    description: "Delicately folded currency notes fanned out in accordion petals, crowned by a rich purple chenille flower with delicate bud sprigs and satin ribbon.",
+    details: "Tailor-made luxury cash gifting arrangement. Perfect for bridal gifting, Eid celebrations, and milestone birthdays.",
+    features: ["Folded currency note arrangement", "Plush violet velvet center flower", "Black satin ribbon & gold trim", "Safe, non-destructive note assembly"]
+  },
+  {
+    id: "money-bouquet-purple-mandala",
+    title: "Grand Currency Mandala Bouquet (Purple Bloom)",
+    category: "Money Bouquets",
+    badge: "Best Seller",
+    price: "Starting ₹1,500",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921259/poshsaaz/money_bouquet_purple_mandala.jpg",
+    images: [
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921259/poshsaaz/money_bouquet_purple_mandala.jpg",
+      "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921255/poshsaaz/money_bouquet_white_flower.jpg"
+    ],
+    description: "Symmetrical multi-tiered currency petal mandala bouquet with a handmade lavender velvet flower at the core, wrapped in regal black and gold presentation paper.",
+    details: "Our signature multi-ring money bouquet showcasing supreme precision and Kashmiri floral craft.",
+    features: ["Multi-tier geometric note mandala", "Velvet chenille purple flower", "Luxury gold-edge paper wrapping", "Starting from ₹1,500 + custom cash value"]
+  },
+
   // BOUQUETS COLLECTION
   {
     id: "bouquet-lavender",
