@@ -254,7 +254,7 @@ export default function Contact() {
                           <option value="Car Charms / Mini Pots (₹250)">Car Charms / Mini Pots (₹250)</option>
                           <option value="Handmade Earrings (₹150 - ₹160)">Handmade Velvet Earrings (₹150 – ₹160)</option>
                           <option value="Hairbands & Hairpin Sets (₹150 - ₹350)">Hairbands & Hairpin Sets (₹150 – ₹350)</option>
-                          <option value="Grand Wall Hangings & Wreaths (₹850 - ₹1,000)">Wall Hangings & Wreaths (₹850 – ₹1,000)</option>
+                          <option value="Wall Hangings & Wreaths (₹500 - ₹1,000)">Wall Hangings & Wreaths (₹500 – ₹1,000)</option>
                           <option value="Floral Hand Cuffs & Bracelets (₹200)">Floral Hand Cuffs & Bracelets (₹200)</option>
                           <option value="Everlasting Bouquets (₹500 - ₹800)">Everlasting Bouquets (₹500 – ₹800)</option>
                           <option value="Currency / Money Bouquet (₹1,500)">Currency Origami Bouquet (₹1,500)</option>
