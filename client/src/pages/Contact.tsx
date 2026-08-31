@@ -5,6 +5,14 @@ import { Link } from "wouter";
 
 const PHONE_NUMBER = "+91 80827 57627";
 const WHATSAPP_LINK = "https://wa.me/918082757627";
+const DEFAULT_ITEM_TYPE = "Curtain Tiebacks (₹200 - ₹300)";
+const EMPTY_FORM = {
+  name: "",
+  contactInfo: "",
+  occasion: "",
+  itemType: DEFAULT_ITEM_TYPE,
+  message: "",
+};
 
 function RevealSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);
@@ -23,10 +31,9 @@ function RevealSection({ children, className = "", delay = 0 }: { children: Reac
 }
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", contactInfo: "", occasion: "", itemType: "Floral Hairband", message: "" });
+  const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
-  const [sending, setSending] = useState(false);
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -40,11 +47,7 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    setSending(true);
-    setTimeout(() => {
-      setSending(false);
-      setSubmitted(true);
-    }, 1000);
+    setSubmitted(true);
   };
 
   const customWhatsAppUrl = `${WHATSAPP_LINK}?text=${encodeURIComponent(
@@ -173,10 +176,10 @@ export default function Contact() {
                       className="text-3xl font-light text-[#2d1a2d] mb-3"
                       style={{ fontFamily: "'Cormorant Garamond', serif" }}
                     >
-                      Inquiry Received
+                      WhatsApp Message Ready
                     </h3>
                     <p className="text-[15px] leading-[1.7] text-[#6b5a5a] mb-8 max-w-md mx-auto">
-                      Thank you, <span className="font-semibold text-[#4a2040]">{form.name}</span>. You can also send your custom notes directly to WhatsApp right now.
+                      Thank you, <span className="font-semibold text-[#4a2040]">{form.name}</span>. Your details are prepared below. Send them on WhatsApp to complete your inquiry.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -190,10 +193,10 @@ export default function Contact() {
                         <span>Send to WhatsApp</span>
                       </a>
                       <button
-                        onClick={() => { setSubmitted(false); setForm({ name: "", contactInfo: "", occasion: "", itemType: "Floral Hairband", message: "" }); }}
+                        onClick={() => { setSubmitted(false); setForm(EMPTY_FORM); setErrors({}); }}
                         className="text-[12px] tracking-[0.12em] uppercase text-[#4a2040] font-medium hover:underline py-2"
                       >
-                        Submit Another Request
+                        Start Another Request
                       </button>
                     </div>
                   </motion.div>
@@ -206,7 +209,7 @@ export default function Contact() {
                       >
                         Custom Creation Request
                       </h3>
-                      <p className="text-[13px] text-[#8b6f6f]">Fill in your custom details below</p>
+                      <p className="text-[13px] text-[#8b6f6f]">Fill in your details, then review and send them on WhatsApp</p>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -249,19 +252,19 @@ export default function Contact() {
                           onChange={(e) => setForm({ ...form, itemType: e.target.value })}
                           className="w-full px-4 py-3 bg-[#faf8f5] border border-[#e8e0d8] text-[14px] text-[#2d1a2d] focus:outline-none focus:border-[#4a2040] transition-colors"
                         >
-                          <option value="Curtain Tiebacks (₹200 - ₹250)">Curtain Tiebacks (₹200 – ₹250)</option>
+                          <option value="Curtain Tiebacks (₹200 - ₹300)">Curtain Tiebacks & Holders (₹200 – ₹300)</option>
                           <option value="Handmade Flower Pots (₹400)">Handmade Flower Pots (₹400)</option>
-                          <option value="Car Charms / Mini Pots (₹250)">Car Charms / Mini Pots (₹250)</option>
-                          <option value="Handmade Earrings (₹150 - ₹160)">Handmade Velvet Earrings (₹150 – ₹160)</option>
-                          <option value="Hairbands & Hairpin Sets (₹150 - ₹350)">Hairbands & Hairpin Sets (₹150 – ₹350)</option>
+                          <option value="Car Charms / Mini Pots (₹250 - ₹300)">Car Charms / Mini Pots (₹250 – ₹300)</option>
+                          <option value="Handmade Velvet Earrings (₹150 - ₹160)">Handmade Velvet Earrings (₹150 – ₹160)</option>
+                          <option value="Hairbands & Hairpin Sets (₹100 - ₹350)">Hairbands & Hairpin Sets (₹100 – ₹350)</option>
                           <option value="Wall Hangings & Wreaths (₹500 - ₹1,000)">Wall Hangings & Wreaths (₹500 – ₹1,000)</option>
                           <option value="Floral Hand Cuffs & Bracelets (₹200)">Floral Hand Cuffs & Bracelets (₹200)</option>
                           <option value="Everlasting Bouquets (₹500 - ₹800)">Everlasting Bouquets (₹500 – ₹800)</option>
-                          <option value="Currency / Money Bouquet (₹1,500)">Currency Origami Bouquet (₹1,500)</option>
+                          <option value="Currency Origami Bouquet (₹1,500)">Currency Origami Bouquet (₹1,500)</option>
                           <option value="Handmade Bookmarks (₹150)">Handmade Bookmarks (₹150)</option>
-                          <option value="Shaped Keychains (₹150 - ₹200)">Shaped Keychains & Charms (₹150 – ₹200)</option>
-                          <option value="Charger Cable Covers (₹299)">Charger Cable Covers (₹299)</option>
-                          <option value="3D Mobile Phone Cover (₹499)">3D Mobile Phone Cover (₹499)</option>
+                          <option value="Keychains & Mobile Charms (₹100 - ₹200)">Keychains & Mobile Charms (₹100 – ₹200)</option>
+                          <option value="Charger Cable Covers (Starting ₹300)">Charger Cable Covers (Starting ₹300)</option>
+                          <option value="3D Mobile Phone Cover (Starting ₹300)">3D Mobile Phone Cover (Starting ₹300)</option>
                           <option value="Custom Gift Hampers">Custom Gift Hampers</option>
                         </select>
                       </div>
@@ -303,17 +306,10 @@ export default function Contact() {
                     <div className="pt-2 flex flex-col sm:flex-row gap-3">
                       <button
                         type="submit"
-                        disabled={sending}
-                        className="flex-1 py-4 px-6 bg-[#4a2040] text-[#faf8f5] text-[12px] tracking-[0.14em] uppercase font-medium hover:bg-[#33142c] transition-colors flex items-center justify-center gap-2.5 disabled:opacity-60"
+                        className="flex-1 py-4 px-6 bg-[#4a2040] text-[#faf8f5] text-[12px] tracking-[0.14em] uppercase font-medium hover:bg-[#33142c] transition-colors flex items-center justify-center gap-2.5"
                       >
-                        {sending ? (
-                          <span>Submitting...</span>
-                        ) : (
-                          <>
-                            <Send size={15} />
-                            <span>Submit Request</span>
-                          </>
-                        )}
+                        <Send size={15} />
+                        <span>Prepare WhatsApp Message</span>
                       </button>
 
                       <a

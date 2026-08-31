@@ -8,21 +8,21 @@ const WHATSAPP_LINK = "https://wa.me/918082757627";
 
 const IMAGES = {
   hero: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754085/poshsaaz/hero.jpg",
-  bouquets: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787923256/poshsaaz/bouquet_royal_crimson_pearl_velvet.png",
-  tieback: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787923127/poshsaaz/curtain_tieback_amber_ivory_blue_drape.jpg",
-  flowerPot: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787923169/poshsaaz/flower_pot_sunflower_mocha.png",
-  carCharm: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787923188/poshsaaz/car_charm_peppermint_white_pot.jpg",
-  bookmark: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787923275/poshsaaz/bookmarks_five_color_daisy_row.jpg",
+  bouquets: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787951310/poshsaaz/bouquet_royal_crimson_pearl_real.png",
+  tieback: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787947695/poshsaaz/curtain_holder_green_yellow_lux.jpg",
+  flowerPot: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787950863/poshsaaz/flower_pot_sunflower_real.jpg",
+  carCharm: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787947702/poshsaaz/car_charm_lavender_heart_lux.jpg",
+  bookmark: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787955265/poshsaaz/bookmarks_five_colors_row_real.png",
   charger: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787924156/poshsaaz/charger_cover_luxury.jpg",
   mobile: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787924159/poshsaaz/mobile_cover_luxury.jpg",
-  keychain: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787922632/poshsaaz/keychain_mini_lavender_bouquet.png",
-  wall: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787923244/poshsaaz/wall_hanging_cascading_blush_pink_roses.png",
-  handCuff: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787923249/poshsaaz/hand_cuff_sky_blue_pearl_chain.jpg",
-  details: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754165/poshsaaz/floral_clips_collection.jpg",
-  packaging: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754155/poshsaaz/mixed_floral_bouquet.jpg",
+  keychain: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787950983/poshsaaz/keychain_shaped_collection_branded.jpg",
+  wall: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787951383/poshsaaz/wall_hanging_pink_cascading_real.jpg",
+  handCuff: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787947712/poshsaaz/hand_cuff_black_daisy_lux.jpg",
+  details: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787955273/poshsaaz/hairband_clips_red_white_4piece_real.jpg",
+  packaging: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787951335/poshsaaz/bouquet_pink_blossoms_real.png",
   craftsmanship: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1784754105/poshsaaz/craftsmanship.jpg",
-  roseHairband: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787923205/poshsaaz/hairband_tricolor_flower_set.jpg",
-  earrings: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921633/poshsaaz/earrings_black_blossom_gold_drop.png",
+  roseHairband: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787951198/poshsaaz/hair_pin_band_tricolor_set.jpg",
+  earrings: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787951987/poshsaaz/earrings_black_velvet_gold_drop_clean.png",
 };
 
 const COLLECTIONS = [
@@ -33,7 +33,7 @@ const COLLECTIONS = [
     image: IMAGES.tieback,
     features: ["Amber striped & royal violet petals", "Magnetic & cord wrap closures", "Protects drapery fabric", "Handcrafted in Kashmir"],
     badge: "New Arrival",
-    price: "₹200 – ₹250 / pc",
+    price: "₹200 – ₹300 / pc",
   },
   {
     id: "flower-pots",
@@ -47,9 +47,9 @@ const COLLECTIONS = [
   {
     id: "car-charms",
     title: "Car Charms & Mini Planters",
-    description: "Adorable miniature red & white peppermint blossom planters designed for car dashboards, rearview mirrors, study desks, and compact spaces.",
+    description: "Adorable miniature flower planters in lavender heart, white & brown, and peppermint styles — designed for car dashboards, rearview mirrors, study desks, and compact spaces.",
     image: IMAGES.carCharm,
-    features: ["Dashboard & desktop size", "Red & white spiral petals", "White, cyan & navy striped pots", "Heat & vibration resilient"],
+    features: ["Lavender heart & peppermint styles", "White & brown woodland charm", "Dashboard & desktop size", "₹250"],
     badge: "New Arrival",
     price: "₹250",
   },
@@ -66,7 +66,7 @@ const COLLECTIONS = [
     id: "money-bouquets",
     title: "Currency Origami Bouquets",
     description: "Bespoke money bouquets with hand-folded currency note petals, plush chenille flower core, and luxury gold-bordered matte black wrapping for high-prestige celebrations.",
-    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787921259/poshsaaz/money_bouquet_purple_mandala.jpg",
+    image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787954187/poshsaaz/currency_twenty_fan_live.jpg",
     features: ["Precision origami note petals", "Handmade chenille floral center", "Luxury gold-edge wrapping", "Custom cash denominations"],
     badge: "Prestige Gift",
     price: "Starting ₹1,500",
@@ -114,9 +114,9 @@ const COLLECTIONS = [
     title: "Charger Cable Covers",
     description: "Handmade with love, crafted to protect. Velvet floral cable protector coiled with blush pink blossoms and pearl beads.",
     image: IMAGES.charger,
-    features: ["Protective spiral velvet wrap", "Pearl blossom design", "Universal cable fit", "Starting ₹299"],
+    features: ["Protective spiral velvet wrap", "Pearl blossom design", "Universal cable fit", "Starting ₹300"],
     badge: "Custom Order",
-    price: "Starting ₹299",
+    price: "Starting ₹300",
     instagramUrl: "https://www.instagram.com/reel/Dapkh2mSd3Z/",
   },
   {
@@ -124,9 +124,9 @@ const COLLECTIONS = [
     title: "3D Floral Mobile Covers",
     description: "Carry art in your pocket. Soft 3D chenille flower bouquet sculpted directly onto crystal clear protective phone case.",
     image: IMAGES.mobile,
-    features: ["3D raised velvet floral texture", "Drop-protected transparent case", "Custom fitted for any phone", "Starting ₹499"],
+    features: ["3D raised velvet floral texture", "Drop-protected transparent case", "Custom fitted for any phone", "Starting ₹300"],
     badge: "Custom Order",
-    price: "Starting ₹499",
+    price: "Starting ₹300",
     instagramUrl: "https://www.instagram.com/reel/Dah4wETy-ku/",
   },
   {
@@ -134,9 +134,9 @@ const COLLECTIONS = [
     title: "Custom Keychains & Charms",
     description: "Miniature flower bouquets, 3D potted plants, phone charms, and playful shaped charms (Lollipop, Mouse, Rainbow).",
     image: IMAGES.keychain,
-    features: ["Mini bouquets & potted plants", "Shaped novelty charms", "Mobile phone lanyard charms", "₹150 – ₹200"],
+    features: ["Mini bouquets & potted plants", "Shaped novelty charms", "Mobile phone lanyard charms", "₹100 – ₹200"],
     badge: "New Arrival",
-    price: "₹150 – ₹200",
+    price: "₹100 – ₹200",
     instagramUrl: "https://www.instagram.com/p/Dahs4ULSWex/",
   },
   {
@@ -156,7 +156,7 @@ const COLLECTIONS = [
     image: IMAGES.roseHairband,
     features: ["Lightweight & comfortable", "Pearl embellishments", "Available in multiple colors"],
     badge: "Made to Order",
-    price: "Starting ₹249",
+    price: "₹100 – ₹350",
   },
   {
     id: "clips",
@@ -560,7 +560,7 @@ export default function Home() {
                   </div>
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     <span className="px-3 py-1.5 bg-[#4a2040] text-[#faf8f5] text-[10px] tracking-[0.12em] uppercase font-medium">New Arrival</span>
-                    <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em] font-medium">Starting ₹299</span>
+                    <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em] font-medium">₹200 – ₹300</span>
                   </div>
                 </div>
                 <div className="mt-5 flex items-start justify-between">
@@ -595,7 +595,7 @@ export default function Home() {
                     </div>
                     <div className="absolute top-4 left-4 flex flex-col gap-2">
                       <span className="px-3 py-1.5 bg-[#4a2040] text-[#faf8f5] text-[10px] tracking-[0.12em] uppercase font-medium">Custom Order</span>
-                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em] font-medium">Starting ₹199</span>
+                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em] font-medium">₹500 – ₹800</span>
                     </div>
                   </div>
                   <div className="mt-5 flex items-start justify-between">
@@ -627,7 +627,7 @@ export default function Home() {
                   />
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     <span className="px-3 py-1.5 bg-[#4a2040] text-[#faf8f5] text-[10px] tracking-[0.12em] uppercase font-medium">Made to Order</span>
-                    <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em] font-medium">Starting ₹249</span>
+                    <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em] font-medium">₹150</span>
                   </div>
                 </div>
                 <div className="mt-4 flex items-start justify-between">
@@ -635,7 +635,7 @@ export default function Home() {
                     <h3 className="text-xl mb-1 font-normal" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#2d1a2d" }}>
                       Handmade Bookmarks
                     </h3>
-                    <p className="text-[13px] text-[#8b6f6f]">Floral stems with satin tassels for readers</p>
+                    <p className="text-[13px] text-[#8b6f6f]">Five-color floral stems made for book lovers</p>
                   </div>
                   <ArrowUpRight size={16} className="text-[#8b6f6f] group-hover:text-[#4a2040] transition-colors mt-1" />
                 </div>
@@ -657,7 +657,7 @@ export default function Home() {
                   />
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     <span className="px-3 py-1.5 bg-[#4a2040] text-[#faf8f5] text-[10px] tracking-[0.12em] uppercase font-medium">Custom Order</span>
-                    <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em] font-medium">Starting ₹599</span>
+                    <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em] font-medium">Starting ₹300</span>
                   </div>
                 </div>
                 <div className="mt-4 flex items-start justify-between">
@@ -687,7 +687,7 @@ export default function Home() {
                   />
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     <span className="px-3 py-1.5 bg-[#4a2040] text-[#faf8f5] text-[10px] tracking-[0.12em] uppercase font-medium">Made to Order</span>
-                    <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em] font-medium">Starting ₹249</span>
+                    <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#4a2040] text-[10px] tracking-[0.08em] font-medium">₹100 – ₹350</span>
                   </div>
                 </div>
                 <div className="mt-4 flex items-start justify-between">
