@@ -567,7 +567,7 @@ export const products: Product[] = [
     id: "currency-origami-bouquet-twenty",
     title: "Currency Origami Bouquet (₹20 Notes)",
     category: "Money Bouquets",
-    badge: "Exclusive",
+    badge: "Wedding Special",
     price: "₹1,500",
     image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787954187/poshsaaz/currency_twenty_fan_live.jpg",
     images: [
@@ -575,22 +575,22 @@ export const products: Product[] = [
       "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787954190/poshsaaz/currency_twenty_circle_live.jpg"
     ],
     description: "Fifty real ₹20 Indian rupee currency notes meticulously folded into origami petals centered with a velvet flower in black & gold luxury wrapping.",
-    details: "Unforgettable cash gift for weddings, Eidi, Shagun, and milestone birthdays.",
-    features: ["50 crisp ₹20 notes (₹1,000 value)", "Handmade center bloom", "Gold-trimmed black wrapping", "₹1,500"]
+    details: "Wedding Season Special: Unforgettable Shagun, Nikah, and Barat presentation with 50 real banknotes intact and zero damage.",
+    features: ["50 crisp ₹20 notes (₹1,000 value)", "Handmade center bloom", "Gold-trimmed black wrapping", "Wedding Season Special"]
   },
   {
     id: "currency-origami-bouquet-fifty",
     title: "Currency Origami Bouquet (₹50 Notes)",
     category: "Money Bouquets",
-    badge: "Exclusive",
+    badge: "Wedding Special",
     price: "₹1,500",
     image: "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787954192/poshsaaz/currency_fifty_fan_live.jpg",
     images: [
       "https://res.cloudinary.com/dtcy9bbux/image/upload/v1787954192/poshsaaz/currency_fifty_fan_live.jpg"
     ],
     description: "Folded crisp blue ₹50 currency notes crafted into an opulent origami floral bouquet with center velvet bloom and black satin bow.",
-    details: "Premium shagun / wedding gifting presentation that leaves a lasting impression.",
-    features: ["Crisp blue ₹50 banknotes", "Hand-sculpted velvet center bloom", "Luxury black & gold wrap", "₹1,500"]
+    details: "Wedding Season Special: Premium bridal & groom shagun gifting presentation that turns cash gifts into a royal keepsake.",
+    features: ["Crisp blue ₹50 banknotes", "Hand-sculpted velvet center bloom", "Luxury black & gold wrap", "Wedding Season Special"]
   },
 
   // ==========================================

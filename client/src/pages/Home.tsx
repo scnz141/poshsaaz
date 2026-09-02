@@ -193,40 +193,59 @@ function ProductLightbox({ product, onClose }: { product: typeof COLLECTIONS[0] 
     `Hi Poshsaaz! I'm interested in ordering the ${product.title} (${product.price}). Can you please share customization details?`
   )}`;
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-8"
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 md:p-8"
       onClick={onClose}
     >
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
       <motion.div
-        initial={{ opacity: 0, scale: 0.96, y: 20 }}
+        initial={{ opacity: 0, scale: 0.96, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.96, y: 20 }}
-        transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-        className="relative z-10 bg-[#faf8f5] max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#e8e0d8] shadow-2xl"
+        exit={{ opacity: 0, scale: 0.96, y: 15 }}
+        transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+        className="relative z-10 bg-[#faf8f5] max-w-4xl w-full max-h-[92dvh] overflow-y-auto rounded-3xl border border-[#e8e0d8] shadow-2xl flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Always visible mobile-friendly floating close button */}
         <button
           onClick={onClose}
           aria-label="Close dialog"
-          className="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-white transition-colors duration-300 text-[#2d1a2d]"
+          className="absolute top-3.5 right-3.5 z-30 w-10 h-10 rounded-full flex items-center justify-center bg-white/90 backdrop-blur-md hover:bg-white text-[#2d1a2d] shadow-md transition-transform active:scale-90"
         >
           <X size={18} />
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="aspect-square md:aspect-auto md:min-h-[460px] overflow-hidden bg-[#f5f0eb]">
+        <div className="grid grid-cols-1 md:grid-cols-2 flex-grow">
+          {/* Responsive Product Image container */}
+          <div className="relative aspect-[4/3] sm:aspect-square md:aspect-auto md:min-h-[440px] max-h-[42vh] md:max-h-none overflow-hidden bg-[#f5f0eb]">
             <img src={product.image} alt={product.title} className="w-full h-full object-cover" />
+            <div className="absolute bottom-3 left-3 flex items-center gap-2 md:hidden">
+              <span className="text-[10px] tracking-[0.15em] uppercase px-2.5 py-1 rounded-full bg-[#4a2040] text-[#faf8f5] font-medium shadow-sm">
+                {product.badge}
+              </span>
+              <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-white/95 text-[#4a2040] shadow-sm">
+                {product.price}
+              </span>
+            </div>
           </div>
-          <div className="p-7 sm:p-10 flex flex-col justify-between">
+
+          <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-between">
             <div>
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-[10px] tracking-[0.2em] uppercase px-3 py-1 bg-[#4a2040] text-[#faf8f5]">
+              <div className="hidden md:flex items-center gap-3 mb-3">
+                <span className="text-[10px] tracking-[0.2em] uppercase px-3 py-1 rounded-full bg-[#4a2040] text-[#faf8f5] font-medium">
                   {product.badge}
                 </span>
                 <span className="text-[11px] tracking-[0.1em] font-medium text-[#4a2040]">
@@ -234,31 +253,31 @@ function ProductLightbox({ product, onClose }: { product: typeof COLLECTIONS[0] 
                 </span>
               </div>
               <h3
-                className="text-[clamp(1.75rem,3vw,2.4rem)] leading-[1.15] mb-4"
-                style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, color: "#2d1a2d" }}
+                className="text-2xl sm:text-3xl md:text-4xl leading-[1.15] mb-3 font-normal"
+                style={{ fontFamily: "'Cormorant Garamond', serif", color: "#2d1a2d" }}
               >
                 {product.title}
               </h3>
-              <p className="text-[14px] leading-[1.75] text-[#6b5a5a] mb-6">{product.description}</p>
-              <ul className="mb-8 space-y-2.5">
+              <p className="text-[14px] leading-[1.7] text-[#6b5a5a] mb-5">{product.description}</p>
+              <ul className="mb-6 space-y-2">
                 {product.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-2.5 text-[13px] text-[#6b5a5a]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#4a2040]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4a2040] flex-shrink-0" />
                     {feature}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="flex flex-col gap-3 pt-4 border-t border-[#e8e0d8]">
+            <div className="flex flex-col gap-2.5 pt-4 border-t border-[#e8e0d8]">
               <a
                 href={whatsappInquiryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-6 py-3.5 bg-[#4a2040] text-[#faf8f5] text-[12px] tracking-[0.15em] uppercase hover:bg-[#3a1530] transition-colors duration-300 group"
+                className="inline-flex items-center justify-center gap-2.5 w-full py-3.5 px-6 rounded-full bg-[#25d366] text-white text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#20ba59] active:scale-[0.98] transition-all shadow-md group"
               >
-                <MessageCircle size={16} />
-                Order via WhatsApp
+                <MessageCircle size={17} />
+                <span>Order via WhatsApp</span>
                 <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
               {product.instagramUrl && (
@@ -266,10 +285,10 @@ function ProductLightbox({ product, onClose }: { product: typeof COLLECTIONS[0] 
                   href={product.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 px-6 py-3.5 bg-[#e1306c] text-white text-[12px] tracking-[0.15em] uppercase hover:bg-[#c1285d] transition-colors duration-300 group"
+                  className="inline-flex items-center justify-center gap-2.5 w-full py-3 px-6 rounded-full bg-[#faf0f3] text-[#e1306c] border border-[#e1306c]/30 text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#e1306c] hover:text-white active:scale-[0.98] transition-all group"
                 >
-                  <Instagram size={16} />
-                  View Reel on Instagram
+                  <Instagram size={15} />
+                  <span>View Reel on Instagram</span>
                   <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
               )}
@@ -293,7 +312,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 30);
       const sections = ["collections", "story", "contact"];
       let current = "";
       for (const id of sections) {
@@ -308,6 +327,18 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Lock body scroll on mobile when menu or modal is open
+  useEffect(() => {
+    if (menuOpen || lightboxProduct) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen, lightboxProduct]);
 
   const openLightbox = useCallback((id: string) => {
     const product = COLLECTIONS.find((c) => c.id === id);
@@ -325,14 +356,14 @@ export default function Home() {
 
       {/* Header Navigation */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-[#faf8f5]/95 backdrop-blur-md border-b border-[#e8e0d8]/80 py-4 shadow-sm"
-            : "bg-transparent py-6"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled || menuOpen
+            ? "bg-[#faf8f5]/95 backdrop-blur-md border-b border-[#e8e0d8]/80 py-3.5 sm:py-4 shadow-sm"
+            : "bg-transparent py-5 sm:py-6"
         }`}
       >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 md:px-12 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2.5">
             <span
               className="text-2xl sm:text-3xl tracking-[0.02em]"
               style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500, color: "#4a2040" }}
@@ -341,31 +372,41 @@ export default function Home() {
             </span>
           </Link>
 
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-9">
             {[
               { label: "Collections", href: "#collections" },
+              { label: "Wedding Atelier", href: "#wedding-bouquets" },
               { label: "Product Catalog", href: "/products", isRoute: true },
               { label: "Our Story", href: "#story" },
-              { label: "Custom Orders", href: "#contact" },
+              { label: "Custom Concierge", href: "/contact", isRoute: true },
             ].map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => {
-                  if (!item.isRoute) {
+              item.isRoute ? (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-[12px] tracking-[0.14em] uppercase transition-colors duration-300 text-[#6b5a5a] hover:text-[#4a2040]"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => {
                     e.preventDefault();
                     const el = document.querySelector(item.href);
                     if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                className={`text-[12px] tracking-[0.14em] uppercase transition-colors duration-300 ${
-                  activeSection === item.label.toLowerCase().replace(" ", "")
-                    ? "text-[#4a2040] font-semibold"
-                    : "text-[#6b5a5a] hover:text-[#4a2040]"
-                }`}
-              >
-                {item.label}
-              </a>
+                  }}
+                  className={`text-[12px] tracking-[0.14em] uppercase transition-colors duration-300 ${
+                    activeSection === item.label.toLowerCase().replace(" ", "")
+                      ? "text-[#4a2040] font-semibold"
+                      : "text-[#6b5a5a] hover:text-[#4a2040]"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              )
             ))}
           </nav>
 
@@ -381,88 +422,139 @@ export default function Home() {
             </a>
           </div>
 
+          {/* Mobile Menu Trigger Button (Accessible 44x44px target) */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-            className="md:hidden p-2 text-[#4a2040]"
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            className="md:hidden w-11 h-11 rounded-full flex items-center justify-center bg-white/80 border border-[#e8e0d8] text-[#4a2040] hover:bg-[#4a2040]/10 active:scale-90 transition-all shadow-sm"
           >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Full-Screen Mobile Drawer Menu */}
         <AnimatePresence>
           {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-[#faf8f5] border-t border-[#e8e0d8] overflow-hidden"
-            >
-              <div className="px-6 py-6 flex flex-col gap-4">
-                {[
-                  { label: "Collections", href: "#collections" },
-                  { label: "Product Catalog", href: "/products", isRoute: true },
-                  { label: "Our Story", href: "#story" },
-                  { label: "Custom Orders", href: "#contact" },
-                ].map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="text-lg text-[#2d1a2d] py-1 font-normal flex items-center justify-between"
-                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                    onClick={(e) => {
-                      if (!item.isRoute) {
-                        e.preventDefault();
-                        const el = document.querySelector(item.href);
-                        if (el) el.scrollIntoView({ behavior: "smooth" });
-                      }
-                      setMenuOpen(false);
-                    }}
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 top-[60px] bg-black/40 backdrop-blur-xs z-40 md:hidden"
+                onClick={() => setMenuOpen(false)}
+              />
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="relative z-50 md:hidden bg-[#faf8f5] border-b border-[#e8e0d8] shadow-2xl max-h-[calc(100dvh-4rem)] overflow-y-auto"
+              >
+                <div className="px-6 py-6 flex flex-col gap-3">
+                  <p className="text-[10px] tracking-[0.22em] uppercase text-[#8b6f6f] font-semibold">Navigation</p>
+                  
+                  <Link
+                    href="/products"
+                    onClick={() => setMenuOpen(false)}
+                    className="p-3 rounded-2xl bg-[#4a2040] text-[#faf8f5] flex items-center justify-between shadow-sm active:scale-[0.99] transition-transform"
                   >
-                    <span>{item.label}</span>
-                    <ArrowUpRight size={16} className="text-[#8b6f6f]" />
-                  </a>
-                ))}
-                <div className="pt-3 border-t border-[#e8e0d8]">
-                  <a
-                    href={WHATSAPP_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-[#25d366] text-white text-[12px] tracking-[0.1em] uppercase font-medium"
-                  >
-                    <MessageCircle size={16} />
-                    WhatsApp ({PHONE_NUMBER})
-                  </a>
+                    <div>
+                      <p className="text-[10px] tracking-[0.15em] uppercase text-[#e8c0d5] font-medium">Browse All 70+ Items</p>
+                      <p className="text-xl font-normal" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Product Catalog</p>
+                    </div>
+                    <ArrowUpRight size={18} className="text-[#faf8f5]" />
+                  </Link>
+
+                  <div className="space-y-1 pt-1">
+                    {[
+                      { label: "Signature Collections", href: "#collections" },
+                      { label: "Wedding Atelier (Money Bouquets)", href: "#wedding-bouquets" },
+                      { label: "Our Story & Craft", href: "#story" },
+                      { label: "Custom Inquiry Form", href: "/contact", isRoute: true },
+                    ].map((item) => (
+                      item.isRoute ? (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          onClick={() => setMenuOpen(false)}
+                          className="text-lg text-[#2d1a2d] py-2.5 px-3 rounded-xl hover:bg-black/5 flex items-center justify-between transition-colors"
+                          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                          <span>{item.label}</span>
+                          <ArrowUpRight size={15} className="text-[#8b6f6f]" />
+                        </Link>
+                      ) : (
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const el = document.querySelector(item.href);
+                            if (el) el.scrollIntoView({ behavior: "smooth" });
+                            setMenuOpen(false);
+                          }}
+                          className="text-lg text-[#2d1a2d] py-2.5 px-3 rounded-xl hover:bg-black/5 flex items-center justify-between transition-colors"
+                          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                          <span>{item.label}</span>
+                          <ArrowDown size={14} className="text-[#8b6f6f]" />
+                        </a>
+                      )
+                    ))}
+                  </div>
+
+                  {/* Direct Contact Buttons on Mobile */}
+                  <div className="pt-3 border-t border-[#e8e0d8] flex flex-col gap-2.5">
+                    <a
+                      href={WHATSAPP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2.5 py-3 rounded-full bg-[#25d366] text-white text-[12px] tracking-[0.08em] font-medium shadow-sm active:scale-[0.98] transition-transform"
+                    >
+                      <MessageCircle size={16} />
+                      <span>WhatsApp Chat ({PHONE_NUMBER})</span>
+                    </a>
+                    <a
+                      href={`tel:${PHONE_NUMBER.replace(/\s+/g, "")}`}
+                      className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-full border border-[#4a2040]/30 text-[#4a2040] text-[12px] tracking-[0.08em] font-medium hover:bg-[#4a2040]/5 active:scale-[0.98] transition-all"
+                    >
+                      <span>Direct Call: {PHONE_NUMBER}</span>
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-end pb-20 md:pb-28 pt-28 overflow-hidden bg-[#faf8f5]">
+      <section className="relative min-h-svh min-h-[100dvh] flex items-end pb-16 sm:pb-20 md:pb-28 pt-24 sm:pt-28 overflow-hidden bg-[#faf8f5]">
         <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
           <img
             src={IMAGES.hero}
             alt="Poshsaaz handcrafted floral accessories"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center sm:object-[70%_center] filter contrast-[1.08] saturate-[1.2] brightness-[0.92]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#faf8f5]/85 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5]/70 via-[#faf8f5]/20 to-transparent sm:w-1/2" />
+          {/* Subtle directional warmth only on the left text zone; leaves the right-side bouquet 100% natural, rich, and unwashed */}
+          <div className="absolute inset-y-0 left-0 w-full sm:w-[62%] md:w-[54%] bg-gradient-to-r from-[#faf8f5]/95 via-[#faf8f5]/60 to-transparent pointer-events-none" />
+          
+          {/* Subtle bottom seam transition */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#faf8f5] to-transparent pointer-events-none" />
         </motion.div>
 
         <motion.div
           style={{ y: heroTextY }}
-          className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 w-full"
+          className="relative z-10 max-w-[1400px] mx-auto px-5 sm:px-8 md:px-12 w-full"
         >
           <div className="max-w-2xl">
             <motion.p
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.7 }}
-              className="text-[11px] tracking-[0.25em] uppercase text-[#8b6f6f] font-semibold mb-4"
+              className="text-[10.5px] sm:text-[11px] tracking-[0.25em] uppercase text-[#8b6f6f] font-semibold mb-3.5"
             >
               Handcrafted in Kashmir
             </motion.p>
@@ -470,8 +562,8 @@ export default function Home() {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.9 }}
-              className="text-[clamp(2.75rem,8vw,6rem)] leading-[1.03] mb-6 font-light"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#2d1a2d" }}
+              className="text-[clamp(2.2rem,7.5vw,5.5rem)] leading-[1.04] mb-5 sm:mb-6 font-light break-words"
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#2d1a2d", textWrap: "balance" }}
             >
               Where petals
               <br />
@@ -482,7 +574,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
-              className="text-[15px] sm:text-[16px] leading-[1.75] text-[#5c4a4a] mb-8 max-w-lg"
+              className="text-[14.5px] sm:text-[16px] leading-[1.75] text-[#5c4a4a] mb-7 sm:mb-8 max-w-lg"
             >
               Handmade floral accessories, curtain holdbacks, everlasting bouquets, and phone covers sculpted with love from pipe cleaner chenille stems in Kashmir.
             </motion.p>
@@ -491,22 +583,22 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.8 }}
-              className="flex flex-wrap items-center gap-4"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto"
             >
-              <a
-                href="#collections"
-                className="inline-flex items-center gap-3 text-[12px] tracking-[0.15em] uppercase text-[#4a2040] font-semibold hover:gap-4 transition-all duration-300 py-2 border-b border-[#4a2040]"
-              >
-                <span>Explore Collections</span>
-                <ArrowDown size={14} />
-              </a>
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#4a2040] text-[#faf8f5] text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#33142c] transition-colors"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-[#4a2040] text-[#faf8f5] text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#33142c] active:scale-[0.98] transition-all shadow-md"
               >
-                <span>Product Catalog</span>
-                <ArrowUpRight size={14} />
+                <span>Browse Entire Catalog</span>
+                <ArrowUpRight size={15} />
               </Link>
+              <a
+                href="#collections"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-full border border-[#4a2040]/30 hover:border-[#4a2040] text-[12px] tracking-[0.14em] uppercase text-[#4a2040] font-medium active:scale-[0.98] transition-all"
+              >
+                <span>Signature Pieces</span>
+                <ArrowDown size={14} />
+              </a>
             </motion.div>
           </div>
         </motion.div>
@@ -705,6 +797,205 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Wedding Season Atelier: Currency Origami Bouquets */}
+      <section id="wedding-bouquets" className="py-24 sm:py-36 px-6 md:px-12 bg-[#f7f4ee] border-y border-[#e8dfd5] relative overflow-hidden">
+        <div className="max-w-[1400px] mx-auto">
+          {/* Editorial Section Header */}
+          <RevealSection>
+            <div className="max-w-3xl mb-16 sm:mb-20">
+              <p className="text-[11px] tracking-[0.28em] uppercase text-[#8b6f6f] font-semibold mb-3">
+                Wedding Season Atelier &bull; Shagun & Nikah Presentation
+              </p>
+              <h2
+                className="text-[clamp(2.4rem,4.8vw,4.2rem)] leading-[1.08] font-light text-[#2d1a2d] mb-6"
+                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              >
+                A Grand Gesture in
+                <br />
+                <em className="font-normal italic text-[#4a2040]">Currency & Velvet</em>
+              </h2>
+              <p className="text-[15px] sm:text-[16px] leading-[1.8] text-[#5c4a4a]">
+                In Kashmir, the tradition of presenting Shagun and Salami is an intimate blessing. Poshsaaz elevates this customary gift beyond the plain envelope — fifty to one hundred crisp Indian currency notes precision-folded into delicate origami petals around an everlasting velvet bloom, hand-wrapped in Korean gold-embossed noir paper.
+              </p>
+            </div>
+          </RevealSection>
+
+          {/* Exhibition Gallery: 2 Masterpiece Pieces */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 lg:gap-20 mb-16 sm:mb-20">
+            {/* Masterpiece 1: Fifty ₹20 Notes */}
+            <RevealSection delay={0.1}>
+              <div className="group flex flex-col">
+                <div className="aspect-[4/5] sm:aspect-square md:aspect-[4/5] overflow-hidden bg-[#ebe4db] border border-[#ded5cb] relative shadow-sm">
+                  <img
+                    src="https://res.cloudinary.com/dtcy9bbux/image/upload/v1787954187/poshsaaz/currency_twenty_fan_live.jpg"
+                    alt="Fifty-Note Currency Origami Bouquet in ₹20 notes"
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1.5 bg-[#4a2040] text-[#faf8f5] text-[10px] tracking-[0.14em] uppercase font-medium">
+                      Wedding Special
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-5 flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-[11px] tracking-[0.15em] uppercase text-[#8b6f6f] mb-1">
+                      50 Banknotes &bull; Velvet Daisy Bloom
+                    </p>
+                    <h3
+                      className="text-2xl sm:text-3xl font-light text-[#2d1a2d]"
+                      style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                    >
+                      The 50-Note Circular Shagun Bouquet
+                    </h3>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <span className="text-lg sm:text-xl font-normal text-[#4a2040]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                      ₹1,500
+                    </span>
+                    <p className="text-[11px] text-[#8b6f6f]">Includes ₹1,000 Cash</p>
+                  </div>
+                </div>
+
+                <p className="text-[13.5px] leading-[1.7] text-[#5c4a4a] mt-3 mb-5">
+                  Fifty real ₹20 Indian rupee notes folded into a seamless radial flower disk, centered with an artisanal pearl-dusted white daisy in Korean gold-bordered black wrap.
+                </p>
+
+                <div className="flex items-center gap-4 pt-3 border-t border-[#e8dfd5]">
+                  <a
+                    href={`${WHATSAPP_LINK}?text=${encodeURIComponent("Hi Poshsaaz! I would like to reserve the 50-Note (₹20) Currency Origami Bouquet for an upcoming wedding.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-[12px] tracking-[0.12em] uppercase font-semibold text-[#4a2040] hover:text-[#25d366] transition-colors"
+                  >
+                    <MessageCircle size={15} />
+                    <span>Reserve on WhatsApp</span>
+                    <ArrowUpRight size={13} />
+                  </a>
+                  <Link
+                    href="/products"
+                    className="text-[12px] tracking-[0.12em] uppercase text-[#8b6f6f] hover:text-[#2d1a2d] transition-colors ml-auto"
+                  >
+                    View in Catalog
+                  </Link>
+                </div>
+              </div>
+            </RevealSection>
+
+            {/* Masterpiece 2: ₹50 Notes */}
+            <RevealSection delay={0.2}>
+              <div className="group flex flex-col">
+                <div className="aspect-[4/5] sm:aspect-square md:aspect-[4/5] overflow-hidden bg-[#ebe4db] border border-[#ded5cb] relative shadow-sm">
+                  <img
+                    src="https://res.cloudinary.com/dtcy9bbux/image/upload/v1787954192/poshsaaz/currency_fifty_fan_live.jpg"
+                    alt="Tiered ₹50 Notes Currency Origami Bouquet"
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1.5 bg-[#4a2040] text-[#faf8f5] text-[10px] tracking-[0.14em] uppercase font-medium">
+                      Wedding Special
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-5 flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-[11px] tracking-[0.15em] uppercase text-[#8b6f6f] mb-1">
+                      Fan-Tiered &bull; Imperial Purple Rose
+                    </p>
+                    <h3
+                      className="text-2xl sm:text-3xl font-light text-[#2d1a2d]"
+                      style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                    >
+                      The Royal Violet Nikah Bouquet
+                    </h3>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <span className="text-lg sm:text-xl font-normal text-[#4a2040]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                      ₹1,500
+                    </span>
+                    <p className="text-[11px] text-[#8b6f6f]">Exclusive Presentation</p>
+                  </div>
+                </div>
+
+                <p className="text-[13.5px] leading-[1.7] text-[#5c4a4a] mt-3 mb-5">
+                  Crisp peacock-blue ₹50 currency notes arranged in tiered fan layers around an imperial violet plush blossom, finished with scalloped gold wrapping and satin ribbons.
+                </p>
+
+                <div className="flex items-center gap-4 pt-3 border-t border-[#e8dfd5]">
+                  <a
+                    href={`${WHATSAPP_LINK}?text=${encodeURIComponent("Hi Poshsaaz! I would like to reserve the ₹50 Currency Origami Bouquet for an upcoming wedding.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-[12px] tracking-[0.12em] uppercase font-semibold text-[#4a2040] hover:text-[#25d366] transition-colors"
+                  >
+                    <MessageCircle size={15} />
+                    <span>Reserve on WhatsApp</span>
+                    <ArrowUpRight size={13} />
+                  </a>
+                  <Link
+                    href="/products"
+                    className="text-[12px] tracking-[0.12em] uppercase text-[#8b6f6f] hover:text-[#2d1a2d] transition-colors ml-auto"
+                  >
+                    View in Catalog
+                  </Link>
+                </div>
+              </div>
+            </RevealSection>
+          </div>
+
+          {/* Artisan Principles & Custom Denominations */}
+          <RevealSection delay={0.3}>
+            <div className="border-t border-[#e0d6cb] pt-12 sm:pt-16">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 mb-12">
+                <div>
+                  <h4 className="text-lg sm:text-xl font-normal text-[#2d1a2d] mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                    Intact, Spendable Banknotes
+                  </h4>
+                  <p className="text-[13.5px] leading-[1.7] text-[#5c4a4a]">
+                    Every banknote is folded strictly using origami techniques with zero staples, glue, or pins. Notes can be gently removed and spent anytime without damage.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-lg sm:text-xl font-normal text-[#2d1a2d] mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                    An Everlasting Keepsake
+                  </h4>
+                  <p className="text-[13.5px] leading-[1.7] text-[#5c4a4a]">
+                    Unlike traditional fresh floral bouquets that wither within days, the central plush velvet bloom and Korean wrap endure as a lasting souvenir of the celebration.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-lg sm:text-xl font-normal text-[#2d1a2d] mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                    Bespoke High Denominations
+                  </h4>
+                  <p className="text-[13.5px] leading-[1.7] text-[#5c4a4a]">
+                    For grand bridal and groom presentations, we create custom pieces using crisp ₹100 or ₹500 notes (₹5,000 to ₹50,000+ total cash value) to match your wedding color palette.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 sm:p-8 bg-white/70 border border-[#ded5cb] rounded-2xl">
+                <div>
+                  <p className="text-base font-medium text-[#2d1a2d]">Planning a Wedding or Nikah Presentation?</p>
+                  <p className="text-[13px] text-[#5c4a4a] mt-0.5">Slots are reserved in advance to allow meticulous handcrafting for each wedding date.</p>
+                </div>
+                <a
+                  href={`${WHATSAPP_LINK}?text=${encodeURIComponent("Hi Poshsaaz! I would like to inquire about wedding season Currency Origami Bouquets.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="whitespace-nowrap px-7 py-3.5 rounded-full bg-[#4a2040] text-[#faf8f5] text-[11.5px] tracking-[0.14em] uppercase font-medium hover:bg-[#33142c] active:scale-95 transition-all shadow-sm flex-shrink-0"
+                >
+                  Consult on WhatsApp
+                </a>
+              </div>
+            </div>
+          </RevealSection>
+        </div>
+      </section>
+
       {/* Marquee Banner */}
       <section className="py-7 border-y border-[#e8e0d8] overflow-hidden bg-[#faf8f5]">
         <motion.div
@@ -820,7 +1111,11 @@ export default function Home() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Chat on WhatsApp: ${PHONE_NUMBER}`}
-        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#25d366] flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 p-3.5"
+        className="fixed z-50 w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#25d366] flex items-center justify-center shadow-lg hover:shadow-xl active:scale-95 transition-all p-3.5"
+        style={{
+          bottom: "max(1.25rem, calc(1rem + env(safe-area-inset-bottom, 0px)))",
+          right: "max(1.25rem, calc(1rem + env(safe-area-inset-right, 0px)))",
+        }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.5 }}
